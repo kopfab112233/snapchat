@@ -1,34 +1,61 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Snapchat Login</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="snapchat-logo.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formular mit Button</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #008CFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #006fcc;
+    }
+  </style>
 </head>
 <body>
-  <div class="login-container">
-    <form action="/submit" method="POST">
-      <div class="login-box" id="step1">
-        <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
-        <h2>Logge dich bei<br />Snapchat ein</h2>
-        <label for="username">Nutzername oder E-Mail</label>
-        <input type="text" id="username" name="username" required />
-        <button type="button" onclick="goToStep2()">Weiter</button>
-      </div>
 
-      <div class="login-box" id="step2" style="display: none;">
-        <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
-        <h2>Passwort eingeben</h2>
-        <div class="email-mask">luc***com <a href="#" onclick="goToStep1()">Das bist nicht du?</a></div>
-        <label for="password">Passwort</label>
-        <input type="password" id="password" name="password" required />
-        <button type="submit">Weiter</button>
-      </div>
-    </form>
-  </div>
+<div class="container">
+  <h3>Nutzername oder E-Mail</h3>
+  <input type="text" placeholder="">
+  <button type="submit">Weiter</button>
+</div>
 
-  <script src="script.js"></script>
 </body>
 </html>
