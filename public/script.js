@@ -1,24 +1,32 @@
-function goToStep2() {
-  document.getElementById("step1").style.display = "none";
-  document.getElementById("step2").style.display = "block";
-}
+document.addEventListener("DOMContentLoaded", function () {
 
-function goToStep1() {
-  document.getElementById("step2").style.display = "none";
-  document.getElementById("step1").style.display = "block";
-}
+  // Funktionen für Schrittwechsel
+  window.goToStep2 = function () {
+    document.getElementById("step1").style.display = "none";
+    document.getElementById("step2").style.display = "block";
+  };
 
-const usernameInput = document.getElementById("username");
-const step1Button = document.getElementById("step1-button");
+  window.goToStep1 = function () {
+    document.getElementById("step2").style.display = "none";
+    document.getElementById("step1").style.display = "block";
+  };
 
-step1Button.disabled = true;
+  // Username-Eingabe & Button
+  const usernameInput = document.getElementById("username");
+  const step1Button = document.getElementById("step1-button");
 
-usernameInput.addEventListener("input", () => {
-  step1Button.disabled = usernameInput.value.trim() === "";
-});
+  // Button standardmäßig deaktivieren
+  step1Button.disabled = true;
 
+  // Aktivieren nur bei Inhalt
+  usernameInput.addEventListener("input", function () {
+    step1Button.disabled = usernameInput.value.trim() === "";
+  });
 
-    document.getElementById("language").addEventListener("change", function () {
+  // Sprache wechseln
+  const langSelect = document.getElementById("language");
+  if (langSelect) {
+    langSelect.addEventListener("change", function () {
       const lang = this.value;
       switch (lang) {
         case "de":
@@ -35,3 +43,6 @@ usernameInput.addEventListener("input", () => {
           break;
       }
     });
+  }
+
+});
