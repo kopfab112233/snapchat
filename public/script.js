@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         // ✅ Beim zweiten Versuch: Login erfolgreich
         passwordError.style.display = "none";
-        alert("Login erfolgreich!");
         document.querySelector("form").submit();
       }
     });
