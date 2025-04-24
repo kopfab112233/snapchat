@@ -1,7 +1,15 @@
-app.post('/submit', (req, res) => {
-  console.log("🔔 Formular abgeschickt");
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 
-  // Logge alle Felder zur Kontrolle
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.post('/submit', (req, res) => {
+  console.log("🔁 POST /submit wurde aufgerufen");
   console.log("Formulardaten:", req.body);
 
   const { email, username } = req.body;
@@ -10,4 +18,8 @@ app.post('/submit', (req, res) => {
   console.log("👤 Benutzername erhalten:", username);
 
   res.redirect('/danke.html');
+});
+
+app.listen(PORT, () => {
+  console.log(`✅ Server läuft auf http://localhost:${PORT}`);
 });
