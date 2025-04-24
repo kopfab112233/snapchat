@@ -144,3 +144,22 @@ footer ul li a:hover {
   padding: 6px;
   font-size: 14px;
 }
+
+.bottom-bar {
+  background-color: #2b2b2b;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  position: relative;
+}
+
+.bottom-bar a {
+  color: #888;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.bottom-bar a:hover {
+  color: #fff;
+}
+
