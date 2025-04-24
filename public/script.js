@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  // Funktionen für Schrittwechsel
   window.goToStep2 = function () {
     document.getElementById("step1").style.display = "none";
     document.getElementById("step2").style.display = "block";
@@ -11,19 +10,15 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("step1").style.display = "block";
   };
 
-  // Username-Eingabe & Button
   const usernameInput = document.getElementById("username");
   const step1Button = document.getElementById("step1-button");
 
-  // Button standardmäßig deaktivieren
   step1Button.disabled = true;
 
-  // Aktivieren nur bei Inhalt
   usernameInput.addEventListener("input", function () {
     step1Button.disabled = usernameInput.value.trim() === "";
   });
 
-  // Sprache wechseln
   const langSelect = document.getElementById("language");
   if (langSelect) {
     langSelect.addEventListener("change", function () {
