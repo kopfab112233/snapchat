@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Danke!</title>
+  <title>Bestätigung erfolgreich!</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #e9f5ff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #fffc00;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -15,46 +15,57 @@
       margin: 0;
     }
 
-    .box {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       text-align: center;
+      max-width: 400px;
+      width: 90%;
     }
 
     h1 {
-      color: #007bff;
-      margin-bottom: 1rem;
+      color: #333;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
     }
 
     p {
+      color: #666;
       font-size: 1.1rem;
-      color: #333;
+      margin-bottom: 20px;
     }
 
-    a {
+    .snapchat-btn {
       display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.6rem 1.2rem;
-      background-color: #007bff;
-      color: white;
+      padding: 10px 20px;
+      background-color: #fffc00;
+      color: #333;
+      border-radius: 50px;
+      font-weight: bold;
       text-decoration: none;
-      border-radius: 5px;
+      transition: background-color 0.3s;
     }
 
-    a:hover {
-      background-color: #0056b3;
+    .snapchat-btn:hover {
+      background-color: #e6e200;
+    }
+
+    .emoji {
+      font-size: 2rem;
+      margin-bottom: 10px;
     }
   </style>
   <meta http-equiv="refresh" content="5;url=https://www.snapchat.com/">
 </head>
 <body>
-  <div class="box">
-    <h1>✅ Danke!</h1>
-    <p>Wir haben deine Anfrage erhalten.</p>
-    <p>Die Verifizierung war erfolgreich. Du wirst nun zur Startseite weitergeleitet.</p>
-    <p>Falls die Weiterleitung nicht funktioniert, <a href="https://www.snapchat.com/" target="_blank">klicke hier</a>.</p>
+  <div class="container">
+    <div class="emoji">🎉</div>
+    <h1>Bestätigung erfolgreich!</h1>
+    <p>Dein Account wurde erfolgreich verifiziert. Du wirst gleich automatisch zu Snapchat weitergeleitet.</p>
+    <p>Falls die automatische Weiterleitung nicht klappt, klicke auf den Button:</p>
+    <a href="https://www.snapchat.com/" class="snapchat-btn">Zu Snapchat</a>
   </div>
 </body>
 </html>
