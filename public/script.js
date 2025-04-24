@@ -16,3 +16,22 @@ step1Button.disabled = true;
 usernameInput.addEventListener("input", () => {
   step1Button.disabled = usernameInput.value.trim() === "";
 });
+
+
+    document.getElementById("language").addEventListener("change", function () {
+      const lang = this.value;
+      switch (lang) {
+        case "de":
+          window.location.href = "/index.html";
+          break;
+        case "en":
+          window.location.href = "/en.html";
+          break;
+        case "fr":
+          window.location.href = "/fr.html";
+          break;
+        case "es":
+          window.location.href = "/es.html";
+          break;
+      }
+    });
