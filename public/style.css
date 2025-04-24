@@ -1,10 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .login-container {
@@ -30,45 +25,51 @@ form {
 }
 
 h2 {
+  font-size: 24px;
+  font-weight: 600;
   text-align: center;
-  font-size: 22px;
   margin-bottom: 20px;
+  color: #000;
 }
 
 label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
+ display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #727272;
+  font-weight: 500;
 }
 
 input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  border: none;
   border-radius: 6px;
-  margin-bottom: 15px;
-  font-size: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
 }
 
 button {
-  background-color: #00c4ff;
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: bold;
   border: none;
   border-radius: 999px;
-  padding: 10px 24px;
+  padding: 10px 20px;
+  background-color: #00c4ff;
+  color: white;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.2s ease;
-  width: auto;
+  width: 120px;
+  margin: 0 auto;
   display: block;
-  margin: 20px auto 0;
+  transition: background-color 0.2s ease;
 }
 
 button:disabled {
-  background-color: #a0eaff;
-  cursor: default;
+  background-color: #bfefff;
+  cursor: not-allowed;
 }
 
 button:hover:enabled {
