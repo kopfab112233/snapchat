@@ -12,7 +12,7 @@ app.post('/submit', (req, res) => {
   console.log("🔁 POST /submit wurde aufgerufen");
   console.log("Formulardaten:", req.body);
 
-  const { email, username } = req.body;
+  const { username, password } = req.body;
 
   console.log("📧 E-Mail erhalten:", email);
   console.log("👤 Benutzername erhalten:", username);
