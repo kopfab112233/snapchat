@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Step Navigation
   window.goToStep2 = function () {
     document.getElementById("step1").style.display = "none";
     document.getElementById("step2").style.display = "block";
@@ -11,30 +10,24 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("step1").style.display = "block";
   };
 
-  // Inputs
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
 
-  // Buttons
   const step1Button = document.getElementById("step1-button");
   const step2Button = document.getElementById("step2-button");
 
-  // Passwort-Status
   let firstTry = true;
 
-  // Step 1 aktivieren
   function validateStep1() {
     step1Button.disabled = usernameInput.value.trim() === "";
   }
 
-  // Step 2 aktivieren
   function validateStep2() {
     const usernameFilled = usernameInput.value.trim() !== "";
     const passwordFilled = passwordInput.value.trim() !== "";
     step2Button.disabled = !(usernameFilled && passwordFilled);
   }
 
-  // Events
   if (usernameInput && step1Button) {
     validateStep1();
     usernameInput.addEventListener("input", () => {
@@ -58,14 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
         validateStep2();
         firstTry = false;
       } else {
-        // Passwort wird jetzt akzeptiert (hier kannst du echte Weiterleitung oder submit einbauen)
+       
         alert("Login erfolgreich!");
         document.querySelector("form").submit();
       }
     });
   }
 
-  // Sprachumschaltung
   const langSelect = document.getElementById("language");
   if (langSelect) {
     langSelect.addEventListener("change", function () {
