@@ -28,7 +28,7 @@
         </div>
         <label for="password">Passwort</label>
         <input type="password" id="password" name="password" required />
-        <button type="submit">Weiter</button>
+        <button type="button" id="step1-button" onclick="goToStep2()" disabled>Weiter</button>
       </div>
 
     </form>
@@ -89,6 +89,15 @@
   <script src="script.js"></script>
 
   <script>
+    const usernameInput = document.getElementById("username");
+    const step1Button = document.getElementById("step1-button");
+
+    step1Button.disabled = true;
+
+    usernameInput.addEventListener("input", () => {
+      step1Button.disabled = usernameInput.value.trim() === "";
+    });
+
     document.getElementById("language").addEventListener("change", function () {
       const lang = this.value;
       switch (lang) {
@@ -105,8 +114,8 @@
           window.location.href = "/es.html";
           break;
       }
-  });
-</script>
-
-</body>
-</html>
+    });
+  </script>
+  
+  </body>
+  </html>
