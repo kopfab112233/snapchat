@@ -12,7 +12,7 @@ app.post('/submit', (req, res) => {
   const { email } = req.body;
   console.log("E-Mail erhalten:", email);
 
-  res.redirect('https://kopfab112233.github.io/pages/danke.html');
+  res.redirect('/danke.html');
 });
 
 app.listen(PORT, () => {
