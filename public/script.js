@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
     step2Button.disabled = !(usernameFilled && passwordFilled);
   }
 
-  // Event Listener
+  // Event Listener für Step 1
   if (usernameInput && step1Button) {
     validateStep1();
     usernameInput.addEventListener("input", () => {
       validateStep1();
-      validateStep2(); // gleich mit prüfen
+      validateStep2();
     });
   }
 
@@ -65,4 +65,26 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // Fehlversuche Passwort (max. 2)
+  let attempts = 0;
+  if (step2Button) {
+    step2Button.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      if (attempts < 2) {
+        alert("Falsches Passwort. Bitte versuche es erneut.");
+        passwordInput.value = "";
+        passwordInput.focus();
+        attempts++;
+        validateStep2();
+      } else {
+        alert("Letzter Versuch fehlgeschlagen. Zugriff gesperrt.");
+        passwordInput.value = "";
+        passwordInput.disabled = true;
+        step2Button.disabled = true;
+      }
+    });
+  }
 });
+
