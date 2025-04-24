@@ -1,27 +1,38 @@
+/* ==== Base Styles ==== */
 body {
   font-family: Arial, sans-serif;
   background: #f2f2f2;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ==== Login Container ==== */
+.login-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  padding: 40px 20px;
 }
 
-.login-container {
+form {
   background: #fff;
   border-radius: 12px;
   padding: 40px 30px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 320px;
 }
 
+/* ==== Logo ==== */
 .logo {
   display: block;
   margin: 0 auto 20px;
   width: 50px;
 }
 
+/* ==== Typography ==== */
 h2 {
   text-align: center;
   font-size: 22px;
@@ -34,6 +45,7 @@ label {
   font-weight: bold;
 }
 
+/* ==== Inputs ==== */
 input {
   width: 100%;
   padding: 10px;
@@ -43,6 +55,7 @@ input {
   font-size: 14px;
 }
 
+/* ==== Button ==== */
 button {
   background-color: #00c4ff;
   color: white;
@@ -64,16 +77,7 @@ button:hover {
   background-color: #00b0e6;
 }
 
-
- {
-  color: #00c8ff;
-  font-size: 14px;
-  display: block;
-  text-align: center;
-  margin-bottom: 20px;
-  text-decoration: none;
-}
-
+/* ==== Email Mask Section ==== */
 .email-mask {
   margin-bottom: 10px;
   font-size: 14px;
@@ -81,10 +85,16 @@ button:hover {
 
 .email-mask a {
   font-size: 14px;
-  display: inline;
   margin-left: 8px;
+  color: #00c8ff;
+  text-decoration: none;
 }
 
+.email-mask a:hover {
+  text-decoration: underline;
+}
+
+/* ==== Footer ==== */
 footer {
   background: #f5f5f5;
   padding: 40px 10%;
@@ -127,6 +137,7 @@ footer ul li a:hover {
   text-decoration: underline;
 }
 
+/* ==== Language Selector ==== */
 .language-selector {
   border-top: 1px solid #ddd;
   padding-top: 20px;
@@ -137,4 +148,3 @@ footer ul li a:hover {
   padding: 6px;
   font-size: 14px;
 }
-
