@@ -269,3 +269,24 @@ footer ul li a:hover {
 *, *::before, *::after {
   box-sizing: border-box;
 }
+
+
+/* Nur auf Mobilgeräten sichtbar */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+/* Mobil-Version */
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+}
