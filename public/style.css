@@ -296,3 +296,7 @@ footer ul li a:hover {
     display: none !important;
   }
 }
+
+footer ul li a {
+  line-height: 1.6;
+}
