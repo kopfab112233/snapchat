@@ -1,14 +1,13 @@
+/* Basislayout für Seitenstruktur */
 html, body {
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-body {
- font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
+/* Loginbereich */
 .login-container {
   flex: 1;
   display: flex;
@@ -17,6 +16,7 @@ body {
   padding: 40px 20px;
 }
 
+/* Formular */
 form {
   background: #fff;
   border-radius: 12px;
@@ -25,12 +25,14 @@ form {
   width: 320px;
 }
 
+/* Logo */
 .logo {
   display: block;
   margin: 0 auto 20px;
   width: 50px;
 }
 
+/* Titel */
 h2 {
   font-size: 24px;
   font-weight: 600;
@@ -39,14 +41,16 @@ h2 {
   color: #000;
 }
 
+/* Eingabelabel */
 label {
- display: block;
+  display: block;
   margin-bottom: 8px;
   font-size: 14px;
   color: #727272;
   font-weight: 500;
 }
 
+/* Eingabefelder */
 input {
   font-size: 16px;
   background-color: #f7f7f7;
@@ -59,6 +63,7 @@ input {
   font-family: inherit;
 }
 
+/* Button */
 button {
   font-size: 15px;
   font-weight: bold;
@@ -83,6 +88,7 @@ button:hover:enabled {
   background-color: #00b0e6;
 }
 
+/* Email-Maske */
 .email-mask {
   margin-bottom: 10px;
   font-size: 14px;
@@ -99,9 +105,10 @@ button:hover:enabled {
   text-decoration: underline;
 }
 
+/* Footer */
 footer {
   background: #f5f5f5;
-  padding: 40px 10% 80px;
+  padding: 40px 10% 80px; /* Extra padding unten für Bottom Bar */
   font-size: 14px;
   color: #555;
 }
@@ -141,6 +148,7 @@ footer ul li a:hover {
   text-decoration: underline;
 }
 
+/* Sprachauswahl */
 .language-selector {
   border-top: 1px solid #ddd;
   padding-top: 20px;
@@ -152,6 +160,7 @@ footer ul li a:hover {
   font-size: 14px;
 }
 
+/* Unterer grauer Balken */
 .bottom-bar {
   background-color: #2b2b2b;
   text-align: center;
@@ -174,3 +183,7 @@ footer ul li a:hover {
   color: #fff;
 }
 
+/* Optional: Box-Sizing für Stabilität */
+* {
+  box-sizing: border-box;
+}
