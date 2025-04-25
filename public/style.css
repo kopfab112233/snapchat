@@ -186,11 +186,6 @@ footer ul li a:hover {
   color: #fff;
 }
 
-/* Box-Sizing für alle Elemente */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
 /* Nur auf Mobilgeräten sichtbar */
 .mobile-only {
   display: none;
@@ -200,18 +195,18 @@ footer ul li a:hover {
   display: block;
 }
 
-/* Mobil-Version */
+/* Responsive Design – MOBIL */
 @media (max-width: 768px) {
   .footer-columns {
     display: none;
   }
 
   .mobile-only {
-    display: block;
+    display: block !important;
   }
 
   .desktop-only {
-    display: none;
+    display: none !important;
   }
 
   .footer-dropdown {
@@ -250,11 +245,10 @@ footer ul li a:hover {
 
   .dropdown-content {
     display: none;
-    padding-left: 15px;
     margin: 10px 0;
+    padding: 10px 15px;
     background-color: #fff;
     border-radius: 8px;
-    padding: 10px;
   }
 
   .dropdown-content li {
@@ -293,5 +287,12 @@ footer ul li a:hover {
   form {
     width: 100%;
     max-width: 320px;
+  }
+}
+
+/* Desktop: mobile Dropdown ausblenden */
+@media (min-width: 769px) {
+  .footer-dropdown {
+    display: none !important;
   }
 }
