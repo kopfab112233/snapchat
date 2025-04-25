@@ -1,3 +1,4 @@
+ist es so richtig oder ist jetzt etwas doppelt? 
 /* Basislayout */
 html, body {
   height: 100%;
@@ -175,23 +176,23 @@ footer ul li a:hover {
 }
 
 .bottom-bar a {
-  display: inline-block;
+  display: inline-block; /* Desktop: nebeneinander */
   color: #888;
   margin: 0 15px;
   text-decoration: none;
 }
 
+@media (max-width: 768px) {
+  .bottom-bar a {
+    display: block;        /* Mobil: untereinander */
+    margin: 5px 0;
+  }
+}
+
+
 .bottom-bar a:hover {
   color: #fff;
 }
-
-  @media (max-width: 768px) {
-    .bottom-bar a {
-      display: block;
-      margin: 5px 0;
-}
-
-
 
 /* Nur auf Mobilgeräten sichtbar */
 .mobile-only {
@@ -206,27 +207,27 @@ footer ul li a:hover {
 @media (max-width: 768px) {
   .footer-columns {
     display: none;
-}
+  }
 
   .mobile-only {
     display: block !important;
-}
+  }
 
   .desktop-only {
     display: none !important;
-}
+  }
 
   .footer-dropdown {
     display: block;
     padding: 10px 5% 20px;
     background-color: #f7f7f7;
     border-top: 1px solid #e5e5e5;
-}
+  }
 
   .footer-dropdown div {
     border-bottom: 1px solid #e0e0e0;
     padding: 5px 0;
-}
+  }
 
   .dropdown-toggle {
     background: none;
@@ -241,49 +242,49 @@ footer ul li a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
- }
+  }
 
   .dropdown-toggle::after {
     content: '›';
     font-size: 20px;
     transition: transform 0.2s;
     color: #000;
- }
+  }
 
   .dropdown-toggle.active::after {
     transform: rotate(90deg);
- }
+  }
 
   .dropdown-content {
     display: none;
     padding: 0 16px 10px;
     background-color: #f7f7f7;
-}
+  }
 
   .dropdown-content li {
     margin: 10px 0;
-}
+  }
 
   .dropdown-content a {
     font-size: 14px;
     color: #000;
     text-decoration: none;
-}
+  }
 
   .dropdown-content a:hover {
     text-decoration: underline;
-}
+  }
 
   .language-selector {
     margin-top: 20px;
     border-top: none;
-}
+  }
 
   .language-selector label {
     display: block;
     margin-bottom: 6px;
     font-weight: 500;
-}
+  }
 
   .language-selector select {
     width: 100%;
@@ -291,17 +292,17 @@ footer ul li a:hover {
     border-radius: 12px;
     border: 1px solid #ccc;
     font-size: 14px;
-}
+  }
 
   form {
     width: 100%;
     max-width: 320px;
+  }
 }
-
 
 /* Desktop: mobile Dropdown ausblenden */
 @media (min-width: 768px) {
   .footer-dropdown {
     display: none !important;
+  }
 }
-
