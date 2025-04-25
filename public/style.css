@@ -186,15 +186,37 @@ footer ul li a:hover {
   color: #fff;
 }
 
-/* Responsive Design */
+/* Box-Sizing für alle Elemente */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Nur auf Mobilgeräten sichtbar */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+/* Mobil-Version */
 @media (max-width: 768px) {
   .footer-columns {
     display: none;
   }
 
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
   .footer-dropdown {
     display: block;
-    padding: 20px 10%;
+    padding: 30px 5% 40px;
     background-color: #f5f5f5;
   }
 
@@ -204,14 +226,16 @@ footer ul li a:hover {
   }
 
   .dropdown-toggle {
-    background: none;
-    border: none;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
     font-size: 16px;
     font-weight: bold;
     width: 100%;
     text-align: left;
     cursor: pointer;
-    padding: 10px 0;
+    padding: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .dropdown-toggle::after {
@@ -228,6 +252,9 @@ footer ul li a:hover {
     display: none;
     padding-left: 15px;
     margin: 10px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
   }
 
   .dropdown-content li {
@@ -246,47 +273,25 @@ footer ul li a:hover {
 
   .language-selector {
     margin-top: 20px;
+    border-top: none;
+  }
+
+  .language-selector label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
   }
 
   .language-selector select {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 14px;
   }
 
   form {
     width: 100%;
     max-width: 320px;
-  }
-}
-
-@media (min-width: 769px) {
-  .footer-dropdown {
-    display: none;
-  }
-}
-
-/* Box-Sizing für alle Elemente */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-
-/* Nur auf Mobilgeräten sichtbar */
-.mobile-only {
-  display: none;
-}
-
-.desktop-only {
-  display: block;
-}
-
-/* Mobil-Version */
-@media (max-width: 768px) {
-  .mobile-only {
-    display: block;
-  }
-
-  .desktop-only {
-    display: none;
   }
 }
