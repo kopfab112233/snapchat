@@ -150,24 +150,46 @@
   <!-- SCRIPTS -->
   <script src="script.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.innerWidth <= 768) {
-        document.querySelectorAll(".dropdown-toggle").forEach(button => {
-          button.addEventListener("click", () => {
-            const content = button.nextElementSibling;
-            const isVisible = content.style.display === "block";
+document.addEventListener("DOMContentLoaded", function () {
+  function handleLanguageChange() {
+    const selectedLang = document.getElementById("language")?.value || "de";
+    switch (selectedLang) {
+      case "de":
+        window.location.href = "/index.html";
+        break;
+      case "en":
+        window.location.href = "/en.html";
+        break;
+      case "fr":
+        window.location.href = "/fr.html";
+        break;
+      case "es":
+        window.location.href = "/es.html";
+        break;
+    }
+  }
 
-            document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
-            document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+  const langSelects = document.querySelectorAll('select[name="language"]');
+  langSelects.forEach(select => {
+    select.addEventListener("change", handleLanguageChange);
+  });
 
-            if (!isVisible) {
-              content.style.display = "block";
-              button.classList.add("active");
-            }
-          });
-        });
-      }
+  if (window.innerWidth <= 768) {
+    document.querySelectorAll(".dropdown-toggle").forEach(button => {
+      button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        const isVisible = content.style.display === "block";
+
+        document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
+        document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+
+        if (!isVisible) {
+          content.style.display = "block";
+          button.classList.add("active");
+        }
+      });
     });
-  </script>
-</body>
-</html>
+  }
+});
+</script>
+
