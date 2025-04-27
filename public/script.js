@@ -129,7 +129,5 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
-  // GANZ WICHTIG: Nach jedem Neuladen Dropdowns neu aktivieren!
   setupDropdowns();
 });
