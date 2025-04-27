@@ -81,8 +81,8 @@
 
     <!-- Sprache nur für DESKTOP -->
     <div class="language-selector desktop-only">
-      <label for="language">Sprache</label>
-      <select id="language" name="language">
+      <label for="language-desktop">Sprache</label>
+      <select id="language-desktop" name="language">
         <option selected value="de">Deutsch</option>
         <option value="en">English</option>
         <option value="fr">Français</option>
@@ -131,8 +131,8 @@
 
     <!-- Sprache nur für MOBILE -->
     <div class="language-selector mobile-only">
-      <label for="language">Sprache</label>
-      <select id="language" name="language">
+      <label for="language-mobile">Sprache</label>
+      <select id="language-mobile" name="language">
         <option selected value="de">Deutsch</option>
         <option value="en">English</option>
         <option value="fr">Français</option>
@@ -151,8 +151,7 @@
   <script src="script.js"></script>
   <script>
 document.addEventListener("DOMContentLoaded", function () {
-  function handleLanguageChange() {
-    const selectedLang = document.getElementById("language")?.value || "de";
+  function handleLanguageChange(selectedLang) {
     switch (selectedLang) {
       case "de":
         window.location.href = "/index.html";
@@ -169,11 +168,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  const langSelects = document.querySelectorAll('select[name="language"]');
-  langSelects.forEach(select => {
-    select.addEventListener("change", handleLanguageChange);
-  });
+  const desktopSelect = document.getElementById("language-desktop");
+  const mobileSelect = document.getElementById("language-mobile");
 
+  if (desktopSelect) {
+    desktopSelect.addEventListener("change", function () {
+      handleLanguageChange(this.value);
+    });
+  }
+
+  if (mobileSelect) {
+    mobileSelect.addEventListener("change", function () {
+      handleLanguageChange(this.value);
+    });
+  }
+
+  // Dropdown-Menüs bei Mobile
   if (window.innerWidth <= 768) {
     document.querySelectorAll(".dropdown-toggle").forEach(button => {
       button.addEventListener("click", () => {
@@ -192,4 +202,3 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
-
