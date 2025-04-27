@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         es: "Contraseña incorrecta. Quedan 2 intentos antes de bloquear la cuenta."
       };
 
-      const langSelect = document.getElementById("language");
+      const langSelect = document.getElementById("language-desktop") || document.getElementById("language-mobile");
       const selectedLang = langSelect ? langSelect.value : "de";
 
       if (firstTry) {
