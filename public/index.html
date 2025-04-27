@@ -150,55 +150,63 @@
   <!-- SCRIPTS -->
   <script src="script.js"></script>
   <script>
-document.addEventListener("DOMContentLoaded", function () {
-  function handleLanguageChange(selectedLang) {
-    switch (selectedLang) {
-      case "de":
-        window.location.href = "/index.html";
-        break;
-      case "en":
-        window.location.href = "/en.html";
-        break;
-      case "fr":
-        window.location.href = "/fr.html";
-        break;
-      case "es":
-        window.location.href = "/es.html";
-        break;
+  document.addEventListener("DOMContentLoaded", function () {
+    // --- Dropdown-Handling auf Mobilgeräten ---
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll(".dropdown-toggle").forEach(button => {
+        button.addEventListener("click", () => {
+          const content = button.nextElementSibling;
+          const isVisible = content.style.display === "block";
+
+          document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
+          document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+
+          if (!isVisible) {
+            content.style.display = "block";
+            button.classList.add("active");
+          }
+        });
+      });
     }
-  }
 
-  const desktopSelect = document.getElementById("language-desktop");
-  const mobileSelect = document.getElementById("language-mobile");
+    // --- Sprache wechseln ---
+    const langSelect = document.getElementById("language");
+    if (langSelect) {
+      langSelect.addEventListener("change", function () {
+        // Bevor Sprache gewechselt wird: Menü-Status speichern
+        if (window.innerWidth <= 768) {
+          localStorage.setItem("dropdownsOpen", "true");
+        }
 
-  if (desktopSelect) {
-    desktopSelect.addEventListener("change", function () {
-      handleLanguageChange(this.value);
-    });
-  }
-
-  if (mobileSelect) {
-    mobileSelect.addEventListener("change", function () {
-      handleLanguageChange(this.value);
-    });
-  }
-
-  // Dropdown-Menüs bei Mobile
-  if (window.innerWidth <= 768) {
-    document.querySelectorAll(".dropdown-toggle").forEach(button => {
-      button.addEventListener("click", () => {
-        const content = button.nextElementSibling;
-        const isVisible = content.style.display === "block";
-
-        document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
-        document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
-
-        if (!isVisible) {
-          content.style.display = "block";
-          button.classList.add("active");
+        // Sprache wechseln
+        const lang = this.value;
+        switch (lang) {
+          case "de":
+            window.location.href = "/index.html";
+            break;
+          case "en":
+            window.location.href = "/en.html";
+            break;
+          case "fr":
+            window.location.href = "/fr.html";
+            break;
+          case "es":
+            window.location.href = "/es.html";
+            break;
         }
       });
-    });
-  }
-});
+    }
+
+    // --- Nach Neuladen: Dropdowns automatisch öffnen, wenn gespeichert ---
+    if (window.innerWidth <= 768 && localStorage.getItem("dropdownsOpen") === "true") {
+      document.querySelectorAll(".dropdown-content").forEach(content => {
+        content.style.display = "block";
+      });
+      document.querySelectorAll(".dropdown-toggle").forEach(button => {
+        button.classList.add("active");
+      });
+      // danach wieder löschen, damit es nicht dauerhaft offen bleibt
+      localStorage.removeItem("dropdownsOpen");
+    }
+  });
 </script>
