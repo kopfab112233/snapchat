@@ -184,7 +184,6 @@ footer ul li a:hover {
   .bottom-bar a {
     display: block;        /* Mobil: untereinander */
     margin: 5px 0;
-  }
 }
 
 
@@ -253,10 +252,12 @@ footer ul li a:hover {
     transform: rotate(90deg);
   }
 
-  .dropdown-content {
-    display: none;
-    padding: 0 16px 10px;
-    background-color: #f7f7f7;
+ .dropdown-content {
+  display: none;
+  padding: 0 16px 10px;
+  background-color: #f7f7f7;
+  border-radius: 8px; /* Neue Zeile */
+  
   }
 
   .dropdown-content li {
@@ -296,11 +297,9 @@ footer ul li a:hover {
     width: 100%;
     max-width: 320px;
   }
-}
 
 /* Desktop: mobile Dropdown ausblenden */
 @media (min-width: 768px) {
   .footer-dropdown {
     display: none !important;
   }
-}
