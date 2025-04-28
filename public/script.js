@@ -1,21 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
+  
   function setupDropdowns() {
     document.querySelectorAll(".dropdown-toggle").forEach(button => {
-      button.addEventListener("click", () => {
+      button.onclick = function () {
         const content = button.nextElementSibling;
-        const isVisible = content.style.display === "block";
+        const isVisible = content && content.style.display === "block";
 
         document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
         document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
 
-        if (!isVisible) {
+        if (!isVisible && content) {
           content.style.display = "block";
           button.classList.add("active");
         }
-      });
+      };
     });
   }
 
+  // Step Navigation
   window.goToStep2 = function () {
     document.getElementById("step1").style.display = "none";
     document.getElementById("step2").style.display = "block";
@@ -34,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const step1Button = document.getElementById("step1-button");
   const step2Button = document.getElementById("step2-button");
 
-  const form = document.querySelector('form'); // wichtig fürs echtes Abschicken
+  const form = document.querySelector('form');
 
   let firstTry = true;
 
@@ -83,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         firstTry = false;
       } else {
         passwordError.style.display = "none";
-        form.submit(); // Jetzt wird das Formular wirklich abgesendet zu Render! ✅
+        form.submit(); // Formular wird richtig abgesendet ✅
       }
     });
   }
@@ -116,5 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  setupDropdowns(); // DropDowns immer neu aktivieren!
+  setupDropdowns(); // Immer aufrufen!
+
 });
