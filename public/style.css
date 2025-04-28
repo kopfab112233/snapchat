@@ -253,11 +253,13 @@ footer ul li a:hover {
     transform: rotate(90deg);
   }
 
-  .dropdown-content {
-    display: none;
-    padding: 0 16px 10px;
-    background-color: #f7f7f7;
-  }
+.dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 16px;
+  background-color: #f7f7f7;
+  transition: max-height 0.3s ease;
+}
 
   .dropdown-content li {
     margin: 10px 0;
