@@ -1,25 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
   
-  function setupDropdowns() {
-    const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
-    if (dropdownButtons.length > 0) {
-      dropdownButtons.forEach(button => {
-        button.onclick = function () {
-          const content = button.nextElementSibling;
-          const isVisible = content && content.style.display === "block";
+function setupDropdowns() {
+  const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
+  dropdownButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const content = button.nextElementSibling;
 
-          // Alles zuklappen
-          document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
-          document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+      const isVisible = content && content.style.maxHeight && content.style.maxHeight !== "0px";
 
-          if (!isVisible && content) {
-            content.style.display = "block";
-            button.classList.add("active");
-          }
-        };
+      // Alle anderen schließen
+      document.querySelectorAll(".dropdown-content").forEach(el => {
+        el.style.maxHeight = "0px";
+        el.parentElement.querySelector(".dropdown-toggle").classList.remove("active");
       });
-    }
-  }
+
+      if (!isVisible && content) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        button.classList.add("active");
+      }
+    });
+  });
+}
 
   // Step Navigation
   window.goToStep2 = function () {
