@@ -1,20 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
   
   function setupDropdowns() {
-    document.querySelectorAll(".dropdown-toggle").forEach(button => {
-      button.onclick = function () {
-        const content = button.nextElementSibling;
-        const isVisible = content && content.style.display === "block";
+    const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
+    if (dropdownButtons.length > 0) {
+      dropdownButtons.forEach(button => {
+        button.onclick = function () {
+          const content = button.nextElementSibling;
+          const isVisible = content && content.style.display === "block";
 
-        document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
-        document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+          // Alles zuklappen
+          document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
+          document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
 
-        if (!isVisible && content) {
-          content.style.display = "block";
-          button.classList.add("active");
-        }
-      };
-    });
+          if (!isVisible && content) {
+            content.style.display = "block";
+            button.classList.add("active");
+          }
+        };
+      });
+    }
   }
 
   // Step Navigation
@@ -85,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         firstTry = false;
       } else {
         passwordError.style.display = "none";
-        form.submit(); // Formular wird richtig abgesendet ✅
+        form.submit();
       }
     });
   }
@@ -118,6 +122,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  setupDropdowns(); // Immer aufrufen!
-
+  setupDropdowns(); // GANZ WICHTIG: direkt nach Seite laden ausführen
 });
