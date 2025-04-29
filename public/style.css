@@ -201,7 +201,6 @@ footer ul li a:hover {
   display: block;
 }
 
-/* Responsive Design – MOBIL */
 @media (max-width: 768px) {
   .footer-columns {
     display: none;
@@ -308,11 +307,25 @@ footer ul li a:hover {
     width: 100%;
     max-width: 320px;
   }
+
+.signup-hint {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 14px;
+  color: #000;
 }
 
-/* Desktop: mobile Dropdown ausblenden */
+.signup-hint a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+
+.signup-hint a:hover {
+  text-decoration: underline;
+}
+
 @media (min-width: 768px) {
   .footer-dropdown {
     display: none !important;
-  }
 }
