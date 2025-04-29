@@ -1,31 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
-  
-function setupDropdowns() {
-  const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
+  function setupDropdowns() {
+    const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
 
-  dropdownButtons.forEach(button => {
-    const content = button.nextElementSibling;
+    dropdownButtons.forEach(button => {
+      button.addEventListener("click", function () {
+        const content = this.nextElementSibling;
+        const currentlyActive = document.querySelector(".dropdown-toggle.active");
 
-    button.addEventListener("click", () => {
-      const isOpen = button.classList.contains("active");
+        // Wenn ein anderes Dropdown offen ist, schließen
+        if (currentlyActive && currentlyActive !== this) {
+          currentlyActive.classList.remove("active");
+          currentlyActive.nextElementSibling.style.display = "none";
+        }
 
-      // Alle Dropdowns schließen
-      document.querySelectorAll(".dropdown-content").forEach(c => {
-        c.style.maxHeight = null;
+        // Eigenes Dropdown öffnen/schließen
+        if (this.classList.contains("active")) {
+          this.classList.remove("active");
+          content.style.display = "none";
+        } else {
+          this.classList.add("active");
+          content.style.display = "block";
+        }
       });
-
-      document.querySelectorAll(".dropdown-toggle").forEach(b => {
-        b.classList.remove("active");
-      });
-
-      // Nur öffnen, wenn es vorher nicht offen war
-      if (!isOpen) {
-        content.style.maxHeight = content.scrollHeight + "px";
-        button.classList.add("active");
-      }
     });
-  });
-}
+  }
+
+  // Andere Scripts (z.B. Sprachumschaltung usw.) kannst du danach weiterladen...
+
+  setupDropdowns(); // Wichtig!
+});
 
   // Step Navigation
   window.goToStep2 = function () {
