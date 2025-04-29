@@ -2,19 +2,24 @@ document.addEventListener("DOMContentLoaded", function () {
   
 function setupDropdowns() {
   const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
+
   dropdownButtons.forEach(button => {
+    const content = button.nextElementSibling;
+
     button.addEventListener("click", () => {
-      const content = button.nextElementSibling;
+      const isOpen = button.classList.contains("active");
 
-      const isVisible = content && content.style.maxHeight && content.style.maxHeight !== "0px";
-
-      // Alle anderen schließen
-      document.querySelectorAll(".dropdown-content").forEach(el => {
-        el.style.maxHeight = "0px";
-        el.parentElement.querySelector(".dropdown-toggle").classList.remove("active");
+      // Alle Dropdowns schließen
+      document.querySelectorAll(".dropdown-content").forEach(c => {
+        c.style.maxHeight = null;
       });
 
-      if (!isVisible && content) {
+      document.querySelectorAll(".dropdown-toggle").forEach(b => {
+        b.classList.remove("active");
+      });
+
+      // Nur öffnen, wenn es vorher nicht offen war
+      if (!isOpen) {
         content.style.maxHeight = content.scrollHeight + "px";
         button.classList.add("active");
       }
