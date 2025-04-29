@@ -267,7 +267,7 @@ footer ul li a:hover {
 }
 
 .dropdown-content.open {
-  max-height: 500px; /* groß genug für Inhalte */
+  max-height: 500px;
 }
 
   .dropdown-content li {
@@ -328,4 +328,5 @@ footer ul li a:hover {
 @media (min-width: 768px) {
   .footer-dropdown {
     display: none !important;
+  }
 }
