@@ -1,29 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
-  function setupDropdowns() {
-    const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
+function setupDropdowns() {
+  const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
 
-    dropdownButtons.forEach(button => {
-      button.addEventListener("click", function () {
-        const content = this.nextElementSibling;
-        const currentlyActive = document.querySelector(".dropdown-toggle.active");
+  dropdownButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      const content = this.nextElementSibling;
+      const currentlyActive = document.querySelector(".dropdown-toggle.active");
 
-        // Wenn ein anderes Dropdown offen ist, schließen
-        if (currentlyActive && currentlyActive !== this) {
-          currentlyActive.classList.remove("active");
-          currentlyActive.nextElementSibling.style.display = "none";
-        }
+      if (currentlyActive && currentlyActive !== this) {
+        currentlyActive.classList.remove("active");
+        currentlyActive.nextElementSibling.classList.remove("open");
+      }
 
-        // Eigenes Dropdown öffnen/schließen
-        if (this.classList.contains("active")) {
-          this.classList.remove("active");
-          content.style.display = "none";
-        } else {
-          this.classList.add("active");
-          content.style.display = "block";
-        }
-      });
+      if (this.classList.contains("active")) {
+        this.classList.remove("active");
+        content.classList.remove("open");
+      } else {
+        this.classList.add("active");
+        content.classList.add("open");
+      }
     });
-  }
+  });
+}
+
 
   // Andere Scripts (z.B. Sprachumschaltung usw.) kannst du danach weiterladen...
 
