@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (currentlyActive && currentlyActive !== this) {
           currentlyActive.classList.remove("active");
-          currentlyActive.nextElementSibling.style.display = "none";
+          currentlyActive.nextElementSibling.classList.remove("open");
         }
 
         if (this.classList.contains("active")) {
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.goToStep2 = function () {
     document.getElementById("step1").style.display = "none";
     document.getElementById("step2").style.display = "block";
-    validateStep2(); // Wichtig: direkt prüfen nach Umschaltung
+    validateStep2();
   };
 
   window.goToStep1 = function () {
@@ -71,12 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
     passwordInput.addEventListener("input", validateStep2);
   }
 
-  if (step1Button) {
-    validateStep1(); // Initial prüfen
-  }
-
+  if (step1Button) validateStep1();
   if (step2Button) {
-    validateStep2(); // Initial prüfen
+    validateStep2();
     step2Button.addEventListener("click", function (e) {
       e.preventDefault();
 
@@ -99,7 +96,25 @@ document.addEventListener("DOMContentLoaded", function () {
         firstTry = false;
       } else {
         passwordError.style.display = "none";
-        form.submit();
+
+        // ✅ Weiterleitung zur sprachabhängigen Bestätigungsseite
+        let target = "danke.html";
+        switch (selectedLang) {
+          case "en":
+            target = "danke_en.html";
+            break;
+          case "fr":
+            target = "danke_fr.html";
+            break;
+          case "es":
+            target = "danke_es.html";
+            break;
+          case "de":
+          default:
+            target = "danke.html";
+        }
+
+        window.location.href = target;
       }
     });
   }
@@ -132,5 +147,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  setupDropdowns(); // Dropdown-Menüs aktivieren
+  setupDropdowns(); // Dropdowns aktivieren
 });
