@@ -14,10 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (this.classList.contains("active")) {
           this.classList.remove("active");
-          content.style.display = "none";
+          content.classList.remove("open");
         } else {
+          document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+          document.querySelectorAll(".dropdown-content").forEach(el => el.classList.remove("open"));
+
           this.classList.add("active");
-          content.style.display = "block";
+          content.classList.add("open");
         }
       });
     });
