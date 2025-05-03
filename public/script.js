@@ -1,19 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-function setupDropdowns() {
-  const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
+  function setupDropdowns() {
+    const dropdownButtons = document.querySelectorAll(".dropdown-toggle");
 
     dropdownButtons.forEach(button => {
       button.addEventListener("click", function () {
         const content = this.nextElementSibling;
         const currentlyActive = document.querySelector(".dropdown-toggle.active");
 
-        // Wenn ein anderes Dropdown offen ist, schließen
         if (currentlyActive && currentlyActive !== this) {
           currentlyActive.classList.remove("active");
           currentlyActive.nextElementSibling.style.display = "none";
         }
 
-        // Eigenes Dropdown öffnen/schließen
         if (this.classList.contains("active")) {
           this.classList.remove("active");
           content.style.display = "none";
@@ -25,17 +23,11 @@ function setupDropdowns() {
     });
   }
 
-
-  // Andere Scripts (z.B. Sprachumschaltung usw.) kannst du danach weiterladen...
-
-  setupDropdowns(); // Wichtig!
-});
-
   // Step Navigation
   window.goToStep2 = function () {
     document.getElementById("step1").style.display = "none";
     document.getElementById("step2").style.display = "block";
-    validateStep2();
+    validateStep2(); // Wichtig: direkt prüfen nach Umschaltung
   };
 
   window.goToStep1 = function () {
@@ -49,8 +41,7 @@ function setupDropdowns() {
 
   const step1Button = document.getElementById("step1-button");
   const step2Button = document.getElementById("step2-button");
-
-  const form = document.querySelector('form');
+  const form = document.querySelector("form");
 
   let firstTry = true;
 
@@ -61,11 +52,12 @@ function setupDropdowns() {
   function validateStep2() {
     const usernameFilled = usernameInput.value.trim() !== "";
     const passwordFilled = passwordInput.value.trim() !== "";
-    step2Button.disabled = !(usernameFilled && passwordFilled);
+    if (step2Button) {
+      step2Button.disabled = !(usernameFilled && passwordFilled);
+    }
   }
 
-  if (usernameInput && step1Button) {
-    validateStep1();
+  if (usernameInput) {
     usernameInput.addEventListener("input", () => {
       validateStep1();
       validateStep2();
@@ -76,7 +68,12 @@ function setupDropdowns() {
     passwordInput.addEventListener("input", validateStep2);
   }
 
+  if (step1Button) {
+    validateStep1(); // Initial prüfen
+  }
+
   if (step2Button) {
+    validateStep2(); // Initial prüfen
     step2Button.addEventListener("click", function (e) {
       e.preventDefault();
 
@@ -132,5 +129,5 @@ function setupDropdowns() {
     });
   }
 
-  setupDropdowns(); // GANZ WICHTIG: direkt nach Seite laden ausführen
+  setupDropdowns(); // Dropdown-Menüs aktivieren
 });
