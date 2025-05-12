@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Step Navigation
   window.goToStep2 = function () {
     document.getElementById("step1").style.display = "none";
     document.getElementById("step2").style.display = "block";
@@ -97,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         passwordError.style.display = "none";
 
-        // ✅ Weiterleitung zur sprachabhängigen Bestätigungsseite
         let target = "danke.html";
         switch (selectedLang) {
           case "en":
