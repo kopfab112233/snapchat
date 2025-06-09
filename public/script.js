@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (step1Button) validateStep1();
   if (step2Button) {
     validateStep2();
+    step2Button.addEventListener("click", function (e) {
+      e.preventDefault();
 
       const messages = {
         de: "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.",
