@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
             target = "danke.html";
         }
 
-        window.location.href = target;
+        form.submit();
       }
     });
   }
