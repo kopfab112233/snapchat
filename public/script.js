@@ -77,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
 
       const messages = {
-        de: "Falsches Passwort.",
-        en: "Incorrect password.",
-        fr: "Mot de passe incorrect.",
-        es: "Contraseña incorrecta."
+        de: "Falsches Passwort. Noch 2 Versuche.",
+        en: "Incorrect password. 2 more attempts",
+        fr: "Mot de passe incorrect. 2 tentatives supplémentaires",
+        es: "Contraseña incorrecta. 2 intentos más"
       };
 
       const langSelect = document.getElementById("language") || document.getElementById("language-desktop") || document.getElementById("language-mobile");
