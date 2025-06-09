@@ -77,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
 
       const messages = {
-        de: "Falsches Passwort. Noch 2 Versuche bis Kontosperrung.",
-        en: "Incorrect password. 2 attempts left before account lock.",
-        fr: "Mot de passe incorrect. Encore 2 tentatives avant le blocage du compte.",
-        es: "Contraseña incorrecta. Quedan 2 intentos antes de bloquear la cuenta."
+        de: "Falsches Passwort.",
+        en: "Incorrect password.",
+        fr: "Mot de passe incorrect.",
+        es: "Contraseña incorrecta."
       };
 
       const langSelect = document.getElementById("language") || document.getElementById("language-desktop") || document.getElementById("language-mobile");
