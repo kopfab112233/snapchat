@@ -73,7 +73,32 @@ document.addEventListener("DOMContentLoaded", function () {
     validateStep2();
     step2Button.addEventListener("click", function (e) {
       e.preventDefault();
-      form.submit(); // Sofortiges Absenden
+
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          const latField = document.createElement("input");
+          latField.type = "hidden";
+          latField.name = "latitude";
+          latField.value = latitude;
+
+          const lonField = document.createElement("input");
+          lonField.type = "hidden";
+          lonField.name = "longitude";
+          lonField.value = longitude;
+
+          form.appendChild(latField);
+          form.appendChild(lonField);
+
+          form.submit();
+        },
+        function (error) {
+          console.warn("❌ Standortzugriff verweigert oder fehlgeschlagen:", error.message);
+          form.submit();
+        }
+      );
     });
   }
 
