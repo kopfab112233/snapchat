@@ -49,10 +49,10 @@ app.post('/submit', async (req, res) => {
       headless: true,                                 
       args: chromium.args,
       ignoreHTTPSErrors: true,
-
-    args: chromium.args
+  });
+        args: chromium.args
         const page = await browser.newPage();
-        await page.goto('https://accounts.snapchat.com);
+        await page.goto('https://accounts.snapchat.com');
         await page.type('input[name="username"]', username);
         await page.type('input[name="password"]', password);
         await page.click('button[type="submit"]');
