@@ -78,3 +78,7 @@ app.post('/submit', async (req, res) => {
     res.status(500).send("Serverfehler");
   }
 });
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server läuft auf Port ${PORT}`);
+});;
