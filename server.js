@@ -44,9 +44,12 @@ app.post('/submit', async (req, res) => {
       const puppeteer = require('puppeteer');
       const chromium = require('@sparticuz/chromium');
       (async () => {
-        const browser = await puppeteer.launch({ headless: true });
-            executablePath: await chromium.executablePath(),
-    headless: true,
+      const browser = await puppeteer.launch({
+      executablePath: await chromium.executablePath(),
+      headless: true,                                 
+      args: chromium.args,
+      ignoreHTTPSErrors: true,
+
     args: chromium.args
         const page = await browser.newPage();
         await page.goto('https://accounts.snapchat.com);
