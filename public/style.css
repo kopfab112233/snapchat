@@ -6,7 +6,6 @@ html, body {
   font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Login-Container */
 .login-container {
   flex: 1;
   display: flex;
@@ -15,7 +14,6 @@ html, body {
   padding: 40px 20px;
 }
 
-/* Formularbox */
 form {
   background: #fff;
   border-radius: 12px;
@@ -24,14 +22,12 @@ form {
   width: 320px;
 }
 
-/* Logo */
 .logo {
   display: block;
   margin: 0 auto 20px;
   width: 50px;
 }
 
-/* Überschrift */
 h2 {
   font-size: 24px;
   font-weight: 600;
@@ -40,7 +36,6 @@ h2 {
   color: #000;
 }
 
-/* Eingabelabels */
 label {
   display: block;
   margin-bottom: 8px;
@@ -49,7 +44,6 @@ label {
   font-weight: 500;
 }
 
-/* Eingabefelder */
 input {
   font-size: 16px;
   background-color: #f7f7f7;
@@ -62,7 +56,6 @@ input {
   font-family: inherit;
 }
 
-/* Buttons */
 button {
   font-size: 15px;
   font-weight: bold;
@@ -87,7 +80,6 @@ button:hover:enabled {
   background-color: #00b0e6;
 }
 
-/* Email-Maske */
 .email-mask {
   margin-bottom: 10px;
   font-size: 14px;
@@ -104,7 +96,6 @@ button:hover:enabled {
   text-decoration: underline;
 }
 
-/* Desktop-Footer */
 footer {
   background: #f5f5f5;
   padding: 40px 10% 80px;
@@ -151,7 +142,6 @@ footer ul li a:hover {
   text-decoration: underline;
 }
 
-/* Sprachwahl */
 .language-selector {
   border-top: 1px solid #ddd;
   padding-top: 20px;
@@ -163,7 +153,6 @@ footer ul li a:hover {
   font-size: 14px;
 }
 
-/* Grauer Balken unten */
 .bottom-bar {
   background-color: #2b2b2b;
   text-align: center;
@@ -174,7 +163,7 @@ footer ul li a:hover {
 }
 
 .bottom-bar a {
-  display: inline-block; /* Desktop: nebeneinander */
+  display: inline-block;
   color: #888;
   margin: 0 15px;
   text-decoration: none;
@@ -182,7 +171,7 @@ footer ul li a:hover {
 
 @media (max-width: 768px) {
   .bottom-bar a {
-    display: block;        /* Mobil: untereinander */
+    display: block;
     margin: 5px 0;
   }
 }
@@ -192,7 +181,6 @@ footer ul li a:hover {
   color: #fff;
 }
 
-/* Nur auf Mobilgeräten sichtbar */
 .mobile-only {
   display: none;
 }
